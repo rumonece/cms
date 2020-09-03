@@ -1,0 +1,12 @@
+Name,VLAN,Net,Subnet,Mask,CIDR
+{% for n in networks %}
+{{n.name}},{{n.vlan|default('')}},{{n.net}},{{n.subnet}},{{n.mask}},{{n.cidr}}
+{% endfor %}
+
+Name,Hostname,Profile,Int Name,DNS,IP,Netmask,MAC,Master
+{% for s in cobbler_systems %}
+{{s.name}},{{s.hostname|default('')}},{{s.profile|default('')}},
+{%for i in s.interfaces%},,,{{i.name}},{{i.dns_name|default('')}},{{i.ip_address|default('')}},{{i.netmask|default('')}},{{i.mac|default('')}},{{i.interface_master|default('')}},
+{%endfor%}
+
+{% endfor %}

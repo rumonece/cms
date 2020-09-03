@@ -1,0 +1,10 @@
+---
+nvidia_version: 390.67
+
+xserver_screens:
+  - name: main
+    driver: nvidia
+
+topsky_xserver_enable_recovery_console: true
+topsky_xserver_recovery_console_cmd: '/usr/bin/xterm -e "su --login --command=\"fvwm -d :${display}\" system"'
+

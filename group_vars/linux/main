@@ -1,0 +1,6 @@
+---
+ansible_user: thalix
+ansible_become: true
+
+base_hostname_interface: eth0
+

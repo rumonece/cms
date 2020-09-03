@@ -1,0 +1,16 @@
+---
+# As the hostname is already included in the hosts_systems we don't want it included twice.
+base_update_hosts: false
+
+auth_pam_limits_maxlogins: 100
+
+topsky_networks_reverse_case: true
+
+topsky_networks:
+  - name: ops
+    subnet: 172.26.134
+  - name: srv_net
+    subnet: 100.127.255.192
+
+topsky_java_version: 1.8.0.222.b10-0.el7_6.x86_64
+

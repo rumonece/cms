@@ -1,0 +1,72 @@
+---
+{% macro vm(subsys, hv, server) %}
+  - name: {{ server.name }}.{{ subsys.domain }}
+    cpus: 3
+    memory: 14336
+    template: rhel7_vm
+    disks:
+      - name: main
+        size: 200
+        boot_order: 1
+        format: raw
+        options: preallocation=falloc
+    display: false
+    sound:
+      speaker: {{ subsys.virt.gpus[server.gpu].sound }}
+    pci_devices:
+      - address: "{{ subsys.virt.gpus[server.gpu].gpu }}"
+        rom_bar: false
+      - address: "{{ subsys.virt.gpus[server.gpu].audio }}"
+    usb_devices:
+      - path: "{{ subsys.virt.gpus[server.gpu].keyboard }}"
+        vm_bus: 0
+        vm_port: 1
+      - path: "{{ subsys.virt.gpus[server.gpu].mouse }}"
+        vm_bus: 0
+        vm_port: 2
+{% if subsys.virt.gpus[server.gpu].touchscreen0 is defined %}
+      - path: "{{ subsys.virt.gpus[server.gpu].touchscreen0 }}"
+        vm_bus: 0
+        vm_port: 3
+{% endif %}
+{% if subsys.virt.gpus[server.gpu].touchscreen1 is defined %}
+      - path: "{{ subsys.virt.gpus[server.gpu].touchscreen1 }}"
+        vm_bus: 0
+        vm_port: 4
+{% endif %}
+    interfaces:
+      - type: direct
+        boot_order: 2
+        mac: "{{ subsys.networks.mgt.macs[0] }}:{{ '%02x' % server.mgt_ip }}"
+        source:
+          dev: "{{ subsys.virt.mgt_interface }}"
+          mode: bridge
+        driver:
+          name: qemu
+      - type: network
+        mac: "{{ subsys.networks.srv.macs[0] }}:{{ '%02x' % server.ip }}"
+        vlan: "{{ subsys.networks.srv.vlan }}"
+        source:
+          network: iov0
+      - type: network
+        mac: "{{ subsys.networks.ops.macs[0] }}:{{ '%02x' % server.ip }}"
+        vlan: "{{ subsys.networks.ops.vlan }}"
+        source:
+          network: iov0
+      - type: network
+        mac: "{{ subsys.networks.srv.macs[1] }}:{{ '%02x' % server.ip }}"
+        vlan: "{{ subsys.networks.srv.vlan }}"
+        source:
+          network: iov1
+      - type: network
+        mac: "{{ subsys.networks.ops.macs[1] }}:{{ '%02x' % server.ip }}"
+        vlan: "{{ subsys.networks.ops.vlan }}"
+        source:
+          network: iov1
+{% endmacro %}
+
+{% set models = {
+  "vm": vm
+  }
+%}
+

@@ -1,0 +1,7 @@
+---
+{% import 'virt.j2' as virt %}
+{% import 'ihpv_virt.j2' as ihpvvirt %}
+{{ virt.register(ihpvvirt) }}
+virt_vms:
+{{ virt.generate(subsystems, inventory_hostname) }}
+

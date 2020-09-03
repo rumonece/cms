@@ -1,0 +1,6 @@
+{% for s in cobbler_systems %}
+{% for i in s.interfaces %}
+{% if i.mac is defined %}{{ i.mac }}
+{% endif %}
+{% endfor %}
+{% endfor %}

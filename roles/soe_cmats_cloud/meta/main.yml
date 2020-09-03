@@ -1,0 +1,5 @@
+---
+dependencies:
+  - { role: azure_boot_fix }
+  - { role: soe_domain_member }
+

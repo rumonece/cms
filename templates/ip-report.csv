@@ -1,0 +1,6 @@
+{% for s in cobbler_systems %}
+{% for i in s.interfaces %}
+{% if i.ip_address is defined %}{{ i.ip_address }}
+{% endif %}
+{% endfor %}
+{% endfor %}

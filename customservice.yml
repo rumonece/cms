@@ -1,0 +1,31 @@
+---
+- name: Configure static hostname
+  hosts: topsky
+  
+  tasks:  
+  - name: install customhost service
+    template: src=customhost.service dest=/etc/systemd/system/
+    
+  
+  - name: Copy file with owner and permissions
+    copy:
+      src: /opt/Ansible/Topsky/customhost.sh
+      dest: /root 
+      owner: root
+      group: root
+      mode: '0755'
+  
+  
+
+
+  - name: Start service customhost, if not started
+    service:
+      name: customhost
+      state: started
+      enabled: yes
+      
+  - name: Add 127.0.0.1 local host entry to the beginning of /etc/hosts
+    lineinfile:
+        path: /etc/hosts
+        line: '127.0.0.1 localhost'
+        insertbefore: BOF

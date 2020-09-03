@@ -1,0 +1,6 @@
+---
+- hosts: cms
+  roles:
+    - soe_cmats_cloud
+    - soe_post
+

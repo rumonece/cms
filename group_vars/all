@@ -1,0 +1,28 @@
+---
+ansible_user: root
+
+#domain: ihpv
+
+base_timezone: UTC
+base_hostname_interface: ens3
+
+ntp_sources:
+  - 10.4.4.200 version 4 minpoll 4 maxpoll 8 prefer
+chrony_sources: "{{ ntp_sources }}"
+
+sshd_ClientAliveInterval: 0
+sshd_PermitRootLogin: yes
+sshd_X11Forwarding: yes
+sshd_AllowTcpForwarding: 'yes'
+sshd_Ciphers:
+sshd_MACs:
+auth_session_timeout: "{{ sshd_ClientAliveInterval }}"
+
+sssd_ad:
+  domain: cloud.cmats
+  join_user: thalix
+  join_password: Thales123456
+sssd_ad_use_posix_attributes: true
+
+selinux_state: disabled
+

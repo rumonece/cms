@@ -1,0 +1,12 @@
+---
+- name: deploy pub keys to authorized_keys files
+  hosts: topsky
+  tasks:
+    - name: topsky - add ssh authorized_keys
+      authorized_key:
+        user: "{{ item[0] }}"
+        key: "{{ lookup('file', item[1]) }}"
+      with_nested:
+        - [ 'root', 'system' ]
+        - [ 'id_rsa_root.pub', 'id_rsa_system.pub', 'id_rsa_resms.pub' ]
+

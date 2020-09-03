@@ -1,0 +1,3 @@
+{% for v in virt_vms %}
+{{inventory_hostname}},{{v.name}},{{v.cpus}},{{v.memory}},{{v.template}}{%for d in v.disks%},{{d.name}},{{d.size}}{%endfor%},
+{% endfor %}

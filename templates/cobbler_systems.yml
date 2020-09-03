@@ -1,0 +1,7 @@
+---
+{% import 'cobbler.j2' as cobbler %}
+{% import 'ihpv_cobbler.j2' as ihpvcobbler %}
+{{ cobbler.register(ihpvcobbler) }}
+cobbler_systems:
+{{ cobbler.generate(subsystems) }}
+

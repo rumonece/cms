@@ -1,0 +1,15 @@
+---
+- hosts: testad1
+  vars:
+    win_active_directory:
+      dns_domain_name: cloud.cmats
+      safe_mode_password: 'ThalixSafeMode123456!'
+    win_active_directory_dns_reverse_zones:
+      - subnet: 172.26.134.0/24
+        zone: 134.26.172.in-addr.arpa
+    win_active_directory_posix_attribute_check: 5
+
+  roles:
+    #- soe_cmats_cloud
+    - win_active_directory
+

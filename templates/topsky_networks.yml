@@ -1,0 +1,6 @@
+---
+topsky_networks:
+{% for n in networks %}
+  - name: {{ n.name }}
+    subnet: {{ n.net }}
+{% endfor %}

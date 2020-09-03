@@ -1,0 +1,20 @@
+---
+- hosts: dep.cloud.cmats
+  vars:
+    samba_shares:
+      - name: install
+        path: /srv/samba/anonymous
+
+  pre_tasks:
+    - local_action: template src=hosts.yml dest=generated/
+    - local_action: include_vars generated/hosts.yml
+
+  roles:
+    - samba_server
+    - httpd
+    - soe_cmats_cloud
+    - soe_post
+
+  tasks:
+    - name: link yum repos
+      file: state=link src=/data/yumrepo/CMATS-COTS-YUM dest=/var/www/html/CMATS-COTS-YUM

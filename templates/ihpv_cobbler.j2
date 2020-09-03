@@ -1,0 +1,164 @@
+---
+{# ===============================================
+VM on 2 physical interfaces:
+  1,2 SRV bonded untagged, VM tagging
+  1,2 OPS bonded untagged, VM tagging
+#}
+{% macro vm(subsys, server) %}
+  - name: {{ server.name }}.{{ subsys.domain }}
+    profile: {{ subsys.cobbler.profile }}
+    hostname: {{ server.name }}
+    kopts: console=ttyS0
+    interfaces:
+      - name: ens3
+        mac: "{{ subsys.networks.mgt.macs[0] }}:{{ '%02x' % server.mgt_ip }}"
+        ip_address: {{ subsys.networks.mgt.net }}.{{ server.mgt_ip }}
+        netmask: {{ subsys.networks.mgt.mask }}
+        dns_name: {{ server.name }}.{{ subsys.domain }}
+      - name: ens6
+        mac: "{{ subsys.networks.srv.macs[0] }}:{{ '%02x' % server.ip }}"
+        interface_type: bond_slave
+        interface_master: bond0
+      - name: ens7
+        mac: "{{ subsys.networks.ops.macs[0] }}:{{ '%02x' % server.ip }}"
+        interface_type: bond_slave
+        interface_master: bond1
+      - name: ens8
+        mac: "{{ subsys.networks.srv.macs[1] }}:{{ '%02x' % server.ip }}"
+        interface_type: bond_slave
+        interface_master: bond0
+      - name: ens9
+        mac: "{{ subsys.networks.ops.macs[1] }}:{{ '%02x' % server.ip }}"
+        interface_type: bond_slave
+        interface_master: bond1
+      - name: bond0
+        interface_type: bond
+        bonding_opts: miimon=100 mode=active-backup fail_over_mac=active
+        ip_address: {{ subsys.networks.srv.net }}.{{ server.ip }}
+        netmask: {{ subsys.networks.srv.mask }}
+      - name: bond1
+        interface_type: bond
+        bonding_opts: miimon=100 mode=active-backup fail_over_mac=active
+        ip_address: {{ subsys.networks.ops.net }}.{{ server.ip }}
+        netmask: {{ subsys.networks.ops.mask }}
+{% endmacro %}
+{# ===============================================
+RHEV VM on 2 physical interfaces:
+  1 SRV untagged
+  2 OPS untagged
+#}
+{% macro vm_rhev(subsys, server) %}
+  - name: {{ server.name }}.{{ subsys.domain }}
+    profile: {{ subsys.cobbler.profile }}
+    hostname: {{ server.name }}
+    gateway: {{ subsys.networks.srv.net }}.1
+    interfaces:
+      - name: ens3
+        mac: "{{ server.mac0 }}"
+        ip_address: {{ subsys.networks.srv.net }}.{{ server.ip }}
+        netmask: {{ subsys.networks.srv.mask }}
+        dns_name: {{ server.name }}.{{ subsys.domain }}
+{% if subsys.networks.ops is defined %}
+      - name: ens4
+        mac: "{{ server.mac1 }}"
+        ip_address: {{ subsys.networks.ops.net }}.{{ server.ip }}
+        netmask: {{ subsys.networks.ops.mask }}
+{% endif %}
+{% endmacro %}
+{# ===============================================
+Physical on 2 physical interface:
+  1 mgt
+  2 no IP
+#}
+{% macro phys(subsys, server, int_mgt) %}
+  - name: {{ server.name }}.{{ subsys.domain }}
+    profile: {{ subsys.cobbler.profile }}
+    hostname: {{ server.name }}.{{ subsys.domain }}
+    gateway: {{ subsys.networks.mgt.net }}.1
+    interfaces:
+      - name: "{{ int_mgt }}"
+        mac: "{{ server.mac0 }}"
+        ip_address: {{ subsys.networks.mgt.net }}.{{ server.ip }}
+        netmask: {{ subsys.networks.mgt.mask }}
+        dns_name: {{ server.name }}.{{ subsys.domain }}
+{% endmacro %}
+{# ==================== DEPLOY =================== #}
+{% macro dep(subsys, server) %}
+{{ phys(subsys, server, "eno1") }}
+{% endmacro %}
+{# ==================== HP Z4 ==================== #}
+{% macro hpz4(subsys, server) %}
+{{ phys(subsys, server, "p4p1") }}
+{% endmacro %}
+{# ================== DELL 5820 ================== #}
+{% macro dell5820(subsys, server) %}
+{{ phys(subsys, server, "p5p1") }}
+{% endmacro %}
+{# ===============================================
+Physical HP Z440 on 2 physical interface:
+#}
+{% macro z440(subsys, server) %}
+  - name: {{ server.name }}.{{ subsys.domain }}
+    profile: {{ subsys.cobbler.profile }}
+    hostname: {{ server.name }}
+    gateway: {{ subsys.networks.srv.net }}.1
+    interfaces:
+      - name: ens4f1
+        mac: "{{ server.mac0 }}"
+        interface_type: bond_slave
+        interface_master: bond0
+      - name: enp10s0f1
+        mac: "{{ server.mac1 }}"
+        interface_type: bond_slave
+        interface_master: bond0
+      - name: bond0
+        interface_type: bond
+        bonding_opts: miimon=100 mode=active-backup
+        ip_address: {{ subsys.networks.srv.net }}.{{ server.ip }}
+        netmask: {{ subsys.networks.srv.mask }}
+        dns_name: {{ server.name }}.{{ subsys.domain }}
+      - name: bond0.{{ subsys.networks.ops.vlan }}
+        ip_address: {{ subsys.networks.ops.net }}.{{ server.ip }}
+        netmask: {{ subsys.networks.ops.mask }}
+{% endmacro %}
+{# ===============================================
+Physical on 1 physical interface:
+  SRV - no vlan
+  OPS - VLAN
+#}
+{% macro phys_srv_ops(subsys, server, int) %}
+  - name: {{ server.name }}.{{ subsys.domain }}
+    profile: {{ subsys.cobbler.profile }}
+    hostname: {{ server.name }}
+    gateway: {{ subsys.networks.srv.net }}.1
+    interfaces:
+      - name: {{ int }}
+        mac: "{{ server.mac0 }}"
+        ip_address: {{ subsys.networks.srv.net }}.{{ server.ip }}
+        netmask: {{ subsys.networks.srv.mask }}
+        dns_name: {{ server.name }}.{{ subsys.domain }}
+      - name: {{ int }}.{{ subsys.networks.ops.vlan }}
+        ip_address: {{ subsys.networks.ops.net }}.{{ server.ip }}
+        netmask: {{ subsys.networks.ops.mask }}
+{% endmacro %}
+{# ==================== HP Z4 ==================== #}
+{% macro hpz4_srv_ops(subsys, server) %}
+{{ phys_srv_ops(subsys, server, "enp45s0f0") }}
+{% endmacro %}
+{# ==================== HP Z2 ==================== #}
+{% macro hpz2_srv_ops(subsys, server) %}
+{{ phys_srv_ops(subsys, server, "enp2s0f0") }}
+{% endmacro %}
+
+{% set models = {
+  "dep": dep,
+  "hpz4": hpz4,
+  "dell5820": dell5820,
+  "z440": z440,
+  "vm": vm,
+  "vm_rhev": vm_rhev,
+  "hpz4_srv_ops": hpz4_srv_ops,
+  "hpz2_srv_ops": hpz2_srv_ops,
+  }
+%}
+

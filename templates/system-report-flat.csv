@@ -1,0 +1,5 @@
+Name,Hostname,Profile,Int Name,DNS,IP,MAC,Int Name,DNS,IP,MAC,Int Name,DNS,IP,MAC,Int Name,DNS,IP,MAC,Int Name,DNS,IP,MAC,Int Name,DNS,IP,MAC,
+{% for s in cobbler_systems %}
+{{s.name}},{{s.hostname|default('')}},{{s.profile|default('')}},{%for i in s.interfaces%}{{i.name}},{{i.dns_name|default('')}},{{i.ip_address|default('')}},{{i.mac|default('')}},{%endfor%}
+
+{% endfor %}

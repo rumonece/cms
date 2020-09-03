@@ -1,0 +1,2244 @@
+################# This is currently not used, but may be in the future. Currently we just deploy a static file.  ########################
+---
+{% macro hosts(servers, srv_net, ops_net) %}
+{% for s in servers %}
+  - name: {{ s.name }}
+    ip_address: {{ ops_net.net }}.{{ s.ip }}
+  - name: {{ s.name }}s
+    ip_address: {{ srv_net.net }}.{{ s.ip }}
+{% endfor %}
+{% endmacro %}
+{% macro hosts_mgt(servers, mgt_net) %}
+{% for s in servers %}
+  - name: {{ s.name }}
+    ip_address: {{ mgt_net.net }}.{{ s.ip }}
+{% endfor %}
+{% endmacro %}
+hosts_systems:
+{{ hosts(vms,      srv2_net, ops2_net) }}
+{{ hosts(vms_rhev, srv2_net, ops2_net) }}
+
+# Generated from provided hosts file.
+  - name: ypmaster
+    ip_address: 10.99.53.101
+  - name: ypslave
+    ip_address: 10.99.53.102
+  - name: cmatsdst1aswx
+    ip_address: 172.21.121.253
+  - name: cmatsdst1bswx
+    ip_address: 172.21.121.254
+  - name: cmatsdst1aswy
+    ip_address: 172.31.121.253
+  - name: cmatsdst1bswy
+    ip_address: 172.31.121.254
+  - name: cmatadm01li
+    ip_address: 10.61.100.30
+  - name: cmatadm02li
+    ip_address: 10.61.100.41
+  - name: alfred
+    ip_address: 10.61.100.10
+    alias: thmi-jenkins
+  - name: cmatrhevm01.melb.tatm.thales
+    ip_address: 192.168.106.91
+    alias: cmatsrhevm01
+  - name: cmatsobservium.melb.tatm.thales
+    ip_address: 10.61.100.8
+    alias: cmatsobservium
+  - name: cmatsups01.melb.tatm.thales
+    ip_address: 10.61.100.9
+    alias: cmatsups01
+  - name: cmatshst01ilo.melb.tatm.thales
+    ip_address: 10.61.100.191
+    alias: cmatshst01ilo
+  - name: cmatshst02ilo.melb.tatm.thales
+    ip_address: 10.61.100.192
+    alias: cmatshst02ilo
+  - name: cmatshst03ilo.melb.tatm.thales
+    ip_address: 10.61.100.193
+    alias: cmatshst03ilo
+  - name: cmatshst04ilo.melb.tatm.thales
+    ip_address: 10.61.100.194
+    alias: cmatshst04ilo
+  - name: cmatshst05ilo.melb.tatm.thales
+    ip_address: 10.61.100.195
+    alias: cmatshst05ilo
+  - name: cmatshst06ilo.melb.tatm.thales
+    ip_address: 10.61.100.196
+    alias: cmatshst06ilo
+  - name: cmatshst07ilo.melb.tatm.thales
+    ip_address: 10.61.100.197
+    alias: cmatshst07ilo
+  - name: cmatshst08ilo.melb.tatm.thales
+    ip_address: 10.61.100.198
+    alias: cmatshst08ilo
+  - name: cmatshst09ilo.melb.tatm.thales
+    ip_address: 10.61.100.199
+    alias: cmatshst09ilo
+  - name: cmatshst10ilo.melb.tatm.thales
+    ip_address: 10.61.100.200
+    alias: cmatshst10ilo
+  - name: cmatssan1astilo.melb.tatm.thales
+    ip_address: 10.61.100.211
+    alias: cmatssan1astilo
+  - name: cmatssan1bstilo.melb.tatm.thales
+    ip_address: 10.61.100.212
+    alias: cmatssan1bstilo
+  - name: cmatsnas2astilo.melb.tatm.thales
+    ip_address: 10.61.100.221
+    alias: cmatsnas2astilo
+  - name: cmatsnas2bstilo.melb.tatm.thales
+    ip_address: 10.61.100.222
+    alias: cmatsnas2bstilo
+  - name: cmatsnas1ast.melb.tatm.thales
+    ip_address: 10.61.100.240
+    alias: cmatsnas1ast
+  - name: cmatshst01.melb.tatm.thales
+    ip_address: 10.61.100.11
+    alias: cmatshst01
+  - name: cmatshst02.melb.tatm.thales
+    ip_address: 10.61.100.12
+    alias: cmatshst02
+  - name: cmatshst03.melb.tatm.thales
+    ip_address: 10.61.100.13
+    alias: cmatshst03
+  - name: cmatshst04.melb.tatm.thales
+    ip_address: 10.61.100.14
+    alias: cmatshst04
+  - name: cmatshst05.melb.tatm.thales
+    ip_address: 10.61.100.15
+    alias: cmatshst05
+  - name: cmatshst06.melb.tatm.thales
+    ip_address: 10.61.100.16
+    alias: cmatshst06
+  - name: cmatshst07.melb.tatm.thales
+    ip_address: 10.61.100.17
+    alias: cmatshst07
+  - name: cmatshst08.melb.tatm.thales
+    ip_address: 10.61.100.18
+    alias: cmatshst08
+  - name: cmatshst09.melb.tatm.thales
+    ip_address: 10.61.100.19
+    alias: cmatshst09
+  - name: cmatshst10.melb.tatm.thales
+    ip_address: 10.61.100.20
+    alias: cmatshst10
+  - name: cmatssan1ast.melb.tatm.thales
+    ip_address: 10.2.2.11
+    alias: cmatssan1ast
+  - name: cmatssan1bst.melb.tatm.thales
+    ip_address: 10.2.2.12
+    alias: cmatssan1bst
+  - name: cmatssan1ast-vip.melb.tatm.thales
+    ip_address: 10.2.2.21
+    alias: cmatssan1ast-vip
+  - name: cmatssan1bst-vip.melb.tatm.thales
+    ip_address: 10.2.2.22
+    alias: cmatssan1bst-vip
+  - name: cmatsdesktop.melb.tatm.thales
+    ip_address: 10.61.100.103
+    alias: cmatsdesktop
+  - name: cmatcor01sw.melb.tatm.thales
+    ip_address: 10.61.100.251
+    alias: cmatscor01sw
+  - name: cmatcor02sw.melb.tatm.thales
+    ip_address: 10.61.100.252
+    alias: cmatscor02sw
+  - name: cmatdst1asw.melb.tatm.thales
+    ip_address: 10.61.100.241
+    alias: cmatsdst1asw
+  - name: cmatdst1bsw.melb.tatm.thales
+    ip_address: 10.61.100.242
+    alias: cmatsdst1bsw
+  - name: cmathct11li
+    ip_address: 172.31.130.2
+  - name: cmathct12li
+    ip_address: 172.31.130.3
+  - name: cmatsys11li
+    ip_address: 172.31.130.4
+  - name: cmatsys12li
+    ip_address: 172.31.130.5
+  - name: cmatres12li
+    ip_address: 172.31.130.79
+  - name: cmatdep01li
+    ip_address: 172.31.130.80
+  - name: cmatcmp11li
+    ip_address: 172.31.130.6
+  - name: cmatcmp12li
+    ip_address: 172.31.130.7
+  - name: cmattrc11li
+    ip_address: 172.31.130.8
+  - name: cmattrc12li
+    ip_address: 172.31.130.9
+  - name: cmatdev01li
+    ip_address: 172.31.130.124
+  - name: cmatdev02li
+    ip_address: 172.31.130.125
+  - name: cmatdev03li
+    ip_address: 172.31.130.126
+  - name: cmatdev04li
+    ip_address: 172.31.130.127
+  - name: cmatdev05li
+    ip_address: 172.31.130.128
+  - name: cmatdev06li
+    ip_address: 172.31.130.129
+  - name: cmatdev07li
+    ip_address: 172.31.130.130
+  - name: cmatdev08li
+    ip_address: 172.31.130.131
+  - name: cmatdev09li
+    ip_address: 172.31.130.132
+  - name: cmatdev10li
+    ip_address: 172.31.130.133
+  - name: cmatdev33li
+    ip_address: 172.31.130.156
+  - name: cmatdev34li
+    ip_address: 172.31.130.157
+  - name: cmatdev35li
+    ip_address: 172.31.130.158
+  - name: cmatdev40li
+    ip_address: 172.31.130.163
+  - name: cmatdev42li
+    ip_address: 172.31.130.165
+  - name: cmatdev45li
+    ip_address: 172.31.130.168
+  - name: cmatdev46li
+    ip_address: 172.31.130.169
+  - name: cmatdev47li
+    ip_address: 172.31.130.170
+  - name: cmatdev57li
+    ip_address: 172.31.130.180
+  - name: cmatdev72li
+    ip_address: 172.31.130.195
+  - name: cmatdev74li
+    ip_address: 172.31.130.197
+  - name: cmatdev75li
+    ip_address: 172.31.130.198
+  - name: cmatdev77li
+    ip_address: 172.31.130.200
+  - name: cmatdev82li
+    ip_address: 172.31.130.205
+  - name: cmatdev83li
+    ip_address: 172.31.130.206
+  - name: cmatdev93li
+    ip_address: 172.31.130.216
+  - name: cmatdev94li
+    ip_address: 172.31.130.217
+  - name: cmatdev95li
+    ip_address: 172.31.130.218
+  - name: cmatdev98li
+    ip_address: 172.31.130.221
+  - name: cmatdev99li
+    ip_address: 172.31.130.222
+  - name: cmatdv100li
+    ip_address: 172.31.130.10
+  - name: cmatdv101li
+    ip_address: 172.31.130.11
+  - name: cmatdv102li
+    ip_address: 172.31.130.12
+  - name: cmatdv103li
+    ip_address: 172.31.130.13
+  - name: cmatdv104li
+    ip_address: 172.31.130.14
+  - name: cmatdv105li
+    ip_address: 172.31.130.15
+  - name: cmatdv106li
+    ip_address: 172.31.130.16
+  - name: cmatdv107li
+    ip_address: 172.31.130.17
+  - name: cmatdv108li
+    ip_address: 172.31.130.18
+  - name: cmatdv109li
+    ip_address: 172.31.130.19
+  - name: cmatdv110li
+    ip_address: 172.31.130.20
+  - name: cmatdv111li
+    ip_address: 172.31.130.21
+  - name: cmatdv112li
+    ip_address: 172.31.130.22
+  - name: cmatdv113li
+    ip_address: 172.31.130.23
+  - name: cmatdv114li
+    ip_address: 172.31.130.24
+  - name: cmatdv115li
+    ip_address: 172.31.130.25
+  - name: cmatdv116li
+    ip_address: 172.31.130.26
+  - name: cmatdv117li
+    ip_address: 172.31.130.27
+  - name: cmatdv118li
+    ip_address: 172.31.130.28
+  - name: cmatdv119li
+    ip_address: 172.31.130.29
+  - name: cmatdv120li
+    ip_address: 172.31.130.30
+  - name: cmatdv121li
+    ip_address: 172.31.130.31
+  - name: cmatdv122li
+    ip_address: 172.31.130.32
+  - name: cmatdv123li
+    ip_address: 172.31.130.33
+  - name: cmatdv124li
+    ip_address: 172.31.130.34
+  - name: cmatdv125li
+    ip_address: 172.31.130.35
+  - name: cmatdv126li
+    ip_address: 172.31.130.36
+  - name: cmatdv127li
+    ip_address: 172.31.130.37
+  - name: cmatdv128li
+    ip_address: 172.31.130.38
+  - name: cmatdv129li
+    ip_address: 172.31.130.39
+  - name: cmatdv130li
+    ip_address: 172.31.130.40
+  - name: cmatdv131li
+    ip_address: 172.31.130.134
+  - name: cmatdv132li
+    ip_address: 172.31.130.135
+  - name: cmatdv133li
+    ip_address: 172.31.130.136
+  - name: cmatdv134li
+    ip_address: 172.31.130.137
+  - name: cmatdv135li
+    ip_address: 172.31.130.138
+  - name: cmatdv136li
+    ip_address: 172.31.130.139
+  - name: cmatdv137li
+    ip_address: 172.31.130.140
+  - name: cmatdv138li
+    ip_address: 172.31.130.141
+  - name: cmatdv139li
+    ip_address: 172.31.130.142
+  - name: cmatdv140li
+    ip_address: 172.31.130.143
+  - name: cmatdv141li
+    ip_address: 172.31.130.144
+  - name: cmatdv142li
+    ip_address: 172.31.130.145
+  - name: cmatdv143li
+    ip_address: 172.31.130.146
+  - name: cmatdv144li
+    ip_address: 172.31.130.147
+  - name: cmatdv145li
+    ip_address: 172.31.130.148
+  - name: cmatdv146li
+    ip_address: 172.31.130.149
+  - name: cmatdv147li
+    ip_address: 172.31.130.150
+  - name: cmatdv148li
+    ip_address: 172.31.130.151
+  - name: cmatdv149li
+    ip_address: 172.31.130.152
+  - name: cmatdv150li
+    ip_address: 172.31.130.153
+  - name: cmatdv151li
+    ip_address: 172.31.130.154
+  - name: cmatdv152li
+    ip_address: 172.31.130.155
+  - name: cmatdv156li
+    ip_address: 172.31.130.159
+  - name: cmatdv157li
+    ip_address: 172.31.130.160
+  - name: cmatdv158li
+    ip_address: 172.31.130.161
+  - name: cmatdv159li
+    ip_address: 172.31.130.162
+  - name: cmatdv161li
+    ip_address: 172.31.130.164
+  - name: cmatdv163li
+    ip_address: 172.31.130.166
+  - name: cmatdv164li
+    ip_address: 172.31.130.167
+  - name: cmatdv168li
+    ip_address: 172.31.130.171
+  - name: cmatdv169li
+    ip_address: 172.31.130.172
+  - name: cmatdv153li
+    ip_address: 172.31.130.173
+  - name: cmatdv154li
+    ip_address: 172.31.130.174
+  - name: cmatdv155li
+    ip_address: 172.31.130.175
+  - name: cmatdv160li
+    ip_address: 172.31.130.176
+  - name: cmatdv162li
+    ip_address: 172.31.130.177
+  - name: cmatdv165li
+    ip_address: 172.31.130.178
+  - name: cmatdv166li
+    ip_address: 172.31.130.179
+  - name: cmatdv167li
+    ip_address: 172.31.130.181
+  - name: cmatdv170li
+    ip_address: 172.31.130.182
+  - name: cmatdv171li
+    ip_address: 172.31.130.183
+  - name: cmatdv172li
+    ip_address: 172.31.130.184
+  - name: cmatdv173li
+    ip_address: 172.31.130.185
+  - name: cmatdv174li
+    ip_address: 172.31.130.186
+  - name: cmatdv175li
+    ip_address: 172.31.130.187
+  - name: cmatdv177li
+    ip_address: 172.31.130.189
+  - name: cmatdv178li
+    ip_address: 172.31.130.190
+  - name: cmatdv179li
+    ip_address: 172.31.130.191
+  - name: cmatjen01li
+    ip_address: 172.31.130.223
+  - name: cmatjen02li
+    ip_address: 172.31.130.224
+  - name: cmatjen03li
+    ip_address: 172.31.130.225
+  - name: cmatjen04li
+    ip_address: 172.31.130.226
+  - name: cmatjen05li
+    ip_address: 172.31.130.227
+  - name: cmatjen06li
+    ip_address: 172.31.130.228
+  - name: cmatjen07li
+    ip_address: 172.31.130.229
+  - name: cmatjen08li
+    ip_address: 172.31.130.230
+  - name: cmatjen09li
+    ip_address: 172.31.130.231
+  - name: cmatjen10li
+    ip_address: 172.31.130.232
+  - name: cmatjen11li
+    ip_address: 172.31.130.65
+  - name: cmatjen12li
+    ip_address: 172.31.130.66
+  - name: cmatjen13li
+    ip_address: 172.31.130.67
+  - name: cmatjen14li
+    ip_address: 172.31.130.68
+  - name: cmatjen15li
+    ip_address: 172.31.130.69
+  - name: cmatjen16li
+    ip_address: 172.31.130.70
+  - name: cmatjen17li
+    ip_address: 172.31.130.71
+  - name: cmatjen18li
+    ip_address: 172.31.130.72
+  - name: cmatjen19li
+    ip_address: 172.31.130.73
+  - name: cmatjen20li
+    ip_address: 172.31.130.74
+  - name: cmatjen21li
+    ip_address: 172.31.130.75
+  - name: cmatjen22li
+    ip_address: 172.31.130.76
+  - name: cmatjen23li
+    ip_address: 172.31.130.77
+  - name: cmatjen24li
+    ip_address: 172.31.130.78
+  - name: cmatsrv01li
+    ip_address: 172.31.130.41
+  - name: cmatsrv02li
+    ip_address: 172.31.130.42
+  - name: cmatsrv03li
+    ip_address: 172.31.130.43
+  - name: cmatsrv04li
+    ip_address: 172.31.130.44
+  - name: cmatsrv05li
+    ip_address: 172.31.130.45
+  - name: cmatsrv06li
+    ip_address: 172.31.130.46
+  - name: cmatsrv07li
+    ip_address: 172.31.130.47
+  - name: cmatsrv08li
+    ip_address: 172.31.130.48
+  - name: cmatsrv09li
+    ip_address: 172.31.130.49
+  - name: cmatsrv10li
+    ip_address: 172.31.130.50
+  - name: cmatsrv11li
+    ip_address: 172.31.130.51
+  - name: cmatsrv12li
+    ip_address: 172.31.130.52
+  - name: cmatsrv13li
+    ip_address: 172.31.130.53
+  - name: cmatsrv14li
+    ip_address: 172.31.130.54
+  - name: cmatsrv15li
+    ip_address: 172.31.130.55
+  - name: cmatsrv16li
+    ip_address: 172.31.130.56
+  - name: cmatsrv17li
+    ip_address: 172.31.130.57
+  - name: cmatsrv18li
+    ip_address: 172.31.130.58
+  - name: cmatsrv19li
+    ip_address: 172.31.130.59
+  - name: cmatsrv20li
+    ip_address: 172.31.130.60
+  - name: cmatdbm01li
+    ip_address: 172.31.130.61
+  - name: cmatdbm02li
+    ip_address: 172.31.130.62
+  - name: cmatdbm03li
+    ip_address: 172.31.130.63
+  - name: cmatdbm04li
+    ip_address: 172.31.130.64
+  - name: cmathmi01li
+    ip_address: 172.31.130.81
+  - name: cmathmi02li
+    ip_address: 172.31.130.82
+  - name: cmathmi03li
+    ip_address: 172.31.130.83
+  - name: cmathmi04li
+    ip_address: 172.31.130.84
+  - name: cmathmi05li
+    ip_address: 172.31.130.85
+  - name: cmathmi06li
+    ip_address: 172.31.130.86
+  - name: cmathmi07li
+    ip_address: 172.31.130.87
+  - name: cmathmi08li
+    ip_address: 172.31.130.88
+  - name: cmathmi09li
+    ip_address: 172.31.130.89
+  - name: cmathmi10li
+    ip_address: 172.31.130.90
+  - name: cmathmi11li
+    ip_address: 172.31.130.91
+  - name: cmathmi12li
+    ip_address: 172.31.130.92
+  - name: cmathmi13li
+    ip_address: 172.31.130.93
+  - name: cmathmi14li
+    ip_address: 172.31.130.94
+  - name: cmathmi15li
+    ip_address: 172.31.130.95
+  - name: cmathmi16li
+    ip_address: 172.31.130.96
+  - name: cmathmi17li
+    ip_address: 172.31.130.97
+  - name: cmathmi18li
+    ip_address: 172.31.130.98
+  - name: cmathmi19li
+    ip_address: 172.31.130.99
+  - name: cmathmi20li
+    ip_address: 172.31.130.100
+  - name: cmatcwp01li
+    ip_address: 172.31.130.101
+  - name: cmatcwp02li
+    ip_address: 172.31.130.102
+  - name: cmatcwp03li
+    ip_address: 172.31.130.103
+  - name: cmatcwp04li
+    ip_address: 172.31.130.104
+  - name: cmatcwp05li
+    ip_address: 172.31.130.105
+  - name: cmatcwp06li
+    ip_address: 172.31.130.106
+  - name: cmatcwp07li
+    ip_address: 172.31.130.107
+  - name: cmatcwp08li
+    ip_address: 172.31.130.108
+  - name: cmatcwp09li
+    ip_address: 172.31.130.109
+  - name: cmatcwp10li
+    ip_address: 172.31.130.110
+  - name: cmatcwp11li
+    ip_address: 172.31.130.111
+  - name: cmatcwp12li
+    ip_address: 172.31.130.112
+  - name: cmatcwp13li
+    ip_address: 172.31.130.113
+  - name: cmatcwp14li
+    ip_address: 172.31.130.114
+  - name: cmatcwp15li
+    ip_address: 172.31.130.115
+  - name: cmatcwp16li
+    ip_address: 172.31.130.116
+  - name: cmatcwp17li
+    ip_address: 172.31.130.117
+  - name: cmatcwp18li
+    ip_address: 172.31.130.118
+  - name: cmatcwp19li
+    ip_address: 172.31.130.119
+  - name: cmatcwp20li
+    ip_address: 172.31.130.120
+  - name: cmatkvm01li
+    ip_address: 172.31.130.241
+  - name: cmatkvm02li
+    ip_address: 172.31.130.242
+  - name: cmatkvm03li
+    ip_address: 172.31.130.243
+  - name: cmatkvm04li
+    ip_address: 172.31.130.244
+  - name: cmatkvm05li
+    ip_address: 172.31.130.245
+  - name: cmatkvm06li
+    ip_address: 172.31.130.246
+  - name: cmatkvm07li
+    ip_address: 172.31.130.247
+  - name: cmatkvm08li
+    ip_address: 172.31.130.248
+  - name: cmatkvm09li
+    ip_address: 172.31.130.249
+  - name: cmatkvm10li
+    ip_address: 172.31.130.250
+  - name: cmathct11lis
+    ip_address: 172.21.130.2
+  - name: cmathct12lis
+    ip_address: 172.21.130.3
+  - name: cmatsys11lis
+    ip_address: 172.21.130.4
+  - name: cmatsys12lis
+    ip_address: 172.21.130.5
+  - name: cmatres12lis
+    ip_address: 172.21.130.79
+  - name: cmatdep01lis
+    ip_address: 172.21.130.80
+  - name: cmatcmp11lis
+    ip_address: 172.21.130.6
+  - name: cmatcmp12lis
+    ip_address: 172.21.130.7
+  - name: cmattrc11lis
+    ip_address: 172.21.130.8
+  - name: cmattrc12lis
+    ip_address: 172.21.130.9
+  - name: cmatdev01lis
+    ip_address: 172.21.130.124
+    alias: cmatdev01liy cmatdev01lix
+  - name: cmatdev02lis
+    ip_address: 172.21.130.125
+    alias: cmatdev02liy cmatdev02lix
+  - name: cmatdev03lis
+    ip_address: 172.21.130.126
+    alias: cmatdev03liy cmatdev03lix
+  - name: cmatdev04lis
+    ip_address: 172.21.130.127
+    alias: cmatdev04liy cmatdev04lix
+  - name: cmatdev05lis
+    ip_address: 172.21.130.128
+    alias: cmatdev05liy cmatdev05lix
+  - name: cmatdev06lis
+    ip_address: 172.21.130.129
+    alias: cmatdev06liy cmatdev06lix
+  - name: cmatdev07lis
+    ip_address: 172.21.130.130
+    alias: cmatdev07liy cmatdev07lix
+  - name: cmatdev08lis
+    ip_address: 172.21.130.131
+    alias: cmatdev08liy cmatdev08lix
+  - name: cmatdev09lis
+    ip_address: 172.21.130.132
+    alias: cmatdev09liy cmatdev09lix
+  - name: cmatdev10lis
+    ip_address: 172.21.130.133
+    alias: cmatdev10liy cmatdev10lix
+  - name: cmatdev33lis
+    ip_address: 172.21.130.156
+    alias: cmatdev33liy cmatdev33lix
+  - name: cmatdev34lis
+    ip_address: 172.21.130.157
+    alias: cmatdev34liy cmatdev34lix
+  - name: cmatdev35lis
+    ip_address: 172.21.130.158
+    alias: cmatdev35liy cmatdev35lix
+  - name: cmatdev40lis
+    ip_address: 172.21.130.163
+    alias: cmatdev40liy cmatdev40lix
+  - name: cmatdev42lis
+    ip_address: 172.21.130.165
+    alias: cmatdev42liy cmatdev42lix
+  - name: cmatdev45lis
+    ip_address: 172.21.130.168
+    alias: cmatdev45liy cmatdev45lix
+  - name: cmatdev46lis
+    ip_address: 172.21.130.169
+    alias: cmatdev46liy cmatdev46lix
+  - name: cmatdev47lis
+    ip_address: 172.21.130.170
+    alias: cmatdev47liy cmatdev47lix
+  - name: cmatdev57lis
+    ip_address: 172.21.130.180
+    alias: cmatdev57liy cmatdev57lix
+  - name: cmatdev72lis
+    ip_address: 172.21.130.195
+    alias: cmatdev72liy cmatdev72lix
+  - name: cmatdev74lis
+    ip_address: 172.21.130.197
+    alias: cmatdev74liy cmatdev74lix
+  - name: cmatdev75lis
+    ip_address: 172.21.130.198
+    alias: cmatdev75liy cmatdev75lix
+  - name: cmatdev77lis
+    ip_address: 172.21.130.200
+    alias: cmatdev77liy cmatdev77lix
+  - name: cmatdev82lis
+    ip_address: 172.21.130.205
+    alias: cmatdev82liy cmatdev82lix
+  - name: cmatdev83lis
+    ip_address: 172.21.130.206
+    alias: cmatdev83liy cmatdev83lix
+  - name: cmatdev93lis
+    ip_address: 172.21.130.216
+    alias: cmatdev93liy cmatdev93lix
+  - name: cmatdev94lis
+    ip_address: 172.21.130.217
+    alias: cmatdev94liy cmatdev94lix
+  - name: cmatdev95lis
+    ip_address: 172.21.130.218
+    alias: cmatdev95liy cmatdev95lix
+  - name: cmatdev98lis
+    ip_address: 172.21.130.221
+    alias: cmatdev98liy cmatdev98lix
+  - name: cmatdev99lis
+    ip_address: 172.21.130.222
+    alias: cmatdev99liy cmatdev99lix
+  - name: cmatdv100lis
+    ip_address: 172.21.130.10
+  - name: cmatdv101lis
+    ip_address: 172.21.130.11
+  - name: cmatdv102lis
+    ip_address: 172.21.130.12
+  - name: cmatdv103lis
+    ip_address: 172.21.130.13
+  - name: cmatdv104lis
+    ip_address: 172.21.130.14
+  - name: cmatdv105lis
+    ip_address: 172.21.130.15
+  - name: cmatdv106lis
+    ip_address: 172.21.130.16
+  - name: cmatdv107lis
+    ip_address: 172.21.130.17
+  - name: cmatdv108lis
+    ip_address: 172.21.130.18
+  - name: cmatdv109lis
+    ip_address: 172.21.130.19
+  - name: cmatdv110lis
+    ip_address: 172.21.130.20
+  - name: cmatdv111lis
+    ip_address: 172.21.130.21
+  - name: cmatdv112lis
+    ip_address: 172.21.130.22
+  - name: cmatdv113lis
+    ip_address: 172.21.130.23
+  - name: cmatdv114lis
+    ip_address: 172.21.130.24
+  - name: cmatdv115lis
+    ip_address: 172.21.130.25
+  - name: cmatdv116lis
+    ip_address: 172.21.130.26
+  - name: cmatdv117lis
+    ip_address: 172.21.130.27
+  - name: cmatdv118lis
+    ip_address: 172.21.130.28
+  - name: cmatdv119lis
+    ip_address: 172.21.130.29
+  - name: cmatdv120lis
+    ip_address: 172.21.130.30
+  - name: cmatdv121lis
+    ip_address: 172.21.130.31
+  - name: cmatdv122lis
+    ip_address: 172.21.130.32
+  - name: cmatdv123lis
+    ip_address: 172.21.130.33
+  - name: cmatdv124lis
+    ip_address: 172.21.130.34
+  - name: cmatdv125lis
+    ip_address: 172.21.130.35
+  - name: cmatdv126lis
+    ip_address: 172.21.130.36
+  - name: cmatdv127lis
+    ip_address: 172.21.130.37
+  - name: cmatdv128lis
+    ip_address: 172.21.130.38
+  - name: cmatdv129lis
+    ip_address: 172.21.130.39
+  - name: cmatdv130lis
+    ip_address: 172.21.130.40
+  - name: cmatdv131lis
+    ip_address: 172.21.130.134
+  - name: cmatdv132lis
+    ip_address: 172.21.130.135
+  - name: cmatdv133lis
+    ip_address: 172.21.130.136
+  - name: cmatdv134lis
+    ip_address: 172.21.130.137
+  - name: cmatdv135lis
+    ip_address: 172.21.130.138
+  - name: cmatdv136lis
+    ip_address: 172.21.130.139
+  - name: cmatdv137lis
+    ip_address: 172.21.130.140
+  - name: cmatdv138lis
+    ip_address: 172.21.130.141
+  - name: cmatdv139lis
+    ip_address: 172.21.130.142
+  - name: cmatdv140lis
+    ip_address: 172.21.130.143
+  - name: cmatdv141lis
+    ip_address: 172.21.130.144
+  - name: cmatdv142lis
+    ip_address: 172.21.130.145
+  - name: cmatdv143lis
+    ip_address: 172.21.130.146
+  - name: cmatdv144lis
+    ip_address: 172.21.130.147
+  - name: cmatdv145lis
+    ip_address: 172.21.130.148
+  - name: cmatdv146lis
+    ip_address: 172.21.130.149
+  - name: cmatdv147lis
+    ip_address: 172.21.130.150
+  - name: cmatdv148lis
+    ip_address: 172.21.130.151
+  - name: cmatdv149lis
+    ip_address: 172.21.130.152
+  - name: cmatdv150lis
+    ip_address: 172.21.130.153
+  - name: cmatdv151lis
+    ip_address: 172.21.130.154
+  - name: cmatdv152lis
+    ip_address: 172.21.130.155
+  - name: cmatdv156lis
+    ip_address: 172.21.130.159
+  - name: cmatdv157lis
+    ip_address: 172.21.130.160
+  - name: cmatdv158lis
+    ip_address: 172.21.130.161
+  - name: cmatdv159lis
+    ip_address: 172.21.130.162
+  - name: cmatdv161lis
+    ip_address: 172.21.130.164
+  - name: cmatdv163lis
+    ip_address: 172.21.130.166
+  - name: cmatdv164lis
+    ip_address: 172.21.130.167
+  - name: cmatdv168lis
+    ip_address: 172.21.130.171
+  - name: cmatdv169lis
+    ip_address: 172.21.130.172
+  - name: cmatdv153lis
+    ip_address: 172.21.130.173
+  - name: cmatdv154lis
+    ip_address: 172.21.130.174
+  - name: cmatdv155lis
+    ip_address: 172.21.130.175
+  - name: cmatdv160lis
+    ip_address: 172.21.130.176
+  - name: cmatdv162lis
+    ip_address: 172.21.130.177
+  - name: cmatdv165lis
+    ip_address: 172.21.130.178
+  - name: cmatdv166lis
+    ip_address: 172.21.130.179
+  - name: cmatdv167lis
+    ip_address: 172.21.130.181
+  - name: cmatdv170lis
+    ip_address: 172.21.130.182
+  - name: cmatdv171lis
+    ip_address: 172.21.130.183
+  - name: cmatdv172lis
+    ip_address: 172.21.130.184
+  - name: cmatdv173lis
+    ip_address: 172.21.130.185
+  - name: cmatdv174lis
+    ip_address: 172.21.130.186
+  - name: cmatdv175lis
+    ip_address: 172.21.130.187
+  - name: cmatdv177lis
+    ip_address: 172.21.130.189
+  - name: cmatdv178lis
+    ip_address: 172.21.130.190
+  - name: cmatdv179lis
+    ip_address: 172.21.130.191
+  - name: cmatjen01lis
+    ip_address: 172.21.130.223
+  - name: cmatjen02lis
+    ip_address: 172.21.130.224
+  - name: cmatjen03lis
+    ip_address: 172.21.130.225
+  - name: cmatjen04lis
+    ip_address: 172.21.130.226
+  - name: cmatjen05lis
+    ip_address: 172.21.130.227
+  - name: cmatjen06lis
+    ip_address: 172.21.130.228
+  - name: cmatjen07lis
+    ip_address: 172.21.130.229
+  - name: cmatjen08lis
+    ip_address: 172.21.130.230
+  - name: cmatjen09lis
+    ip_address: 172.21.130.231
+  - name: cmatjen10lis
+    ip_address: 172.21.130.232
+  - name: cmatjen11lis
+    ip_address: 172.21.130.65
+  - name: cmatjen12lis
+    ip_address: 172.21.130.66
+  - name: cmatjen13lis
+    ip_address: 172.21.130.67
+  - name: cmatjen14lis
+    ip_address: 172.21.130.68
+  - name: cmatjen15lis
+    ip_address: 172.21.130.69
+  - name: cmatjen16lis
+    ip_address: 172.21.130.70
+  - name: cmatjen17lis
+    ip_address: 172.21.130.71
+  - name: cmatjen18lis
+    ip_address: 172.21.130.72
+  - name: cmatjen19lis
+    ip_address: 172.21.130.73
+  - name: cmatjen20lis
+    ip_address: 172.21.130.74
+  - name: cmatjen21lis
+    ip_address: 172.21.130.75
+  - name: cmatjen22lis
+    ip_address: 172.21.130.76
+  - name: cmatjen23lis
+    ip_address: 172.21.130.77
+  - name: cmatjen24lis
+    ip_address: 172.21.130.78
+  - name: cmatsrv01lis
+    ip_address: 172.21.130.41
+  - name: cmatsrv02lis
+    ip_address: 172.21.130.42
+  - name: cmatsrv03lis
+    ip_address: 172.21.130.43
+  - name: cmatsrv04lis
+    ip_address: 172.21.130.44
+  - name: cmatsrv05lis
+    ip_address: 172.21.130.45
+  - name: cmatsrv06lis
+    ip_address: 172.21.130.46
+  - name: cmatsrv07lis
+    ip_address: 172.21.130.47
+  - name: cmatsrv08lis
+    ip_address: 172.21.130.48
+  - name: cmatsrv09lis
+    ip_address: 172.21.130.49
+  - name: cmatsrv10lis
+    ip_address: 172.21.130.50
+  - name: cmatsrv11lis
+    ip_address: 172.21.130.51
+  - name: cmatsrv12lis
+    ip_address: 172.21.130.52
+  - name: cmatsrv13lis
+    ip_address: 172.21.130.53
+  - name: cmatsrv14lis
+    ip_address: 172.21.130.54
+  - name: cmatsrv15lis
+    ip_address: 172.21.130.55
+  - name: cmatsrv16lis
+    ip_address: 172.21.130.56
+  - name: cmatsrv17lis
+    ip_address: 172.21.130.57
+  - name: cmatsrv18lis
+    ip_address: 172.21.130.58
+  - name: cmatsrv19lis
+    ip_address: 172.21.130.59
+  - name: cmatsrv20lis
+    ip_address: 172.21.130.60
+  - name: cmatdbm01lis
+    ip_address: 172.21.130.61
+  - name: cmatdbm02lis
+    ip_address: 172.21.130.62
+  - name: cmatdbm03lis
+    ip_address: 172.21.130.63
+  - name: cmatdbm04lis
+    ip_address: 172.21.130.64
+  - name: cmathmi01lis
+    ip_address: 172.21.130.81
+  - name: cmathmi02lis
+    ip_address: 172.21.130.82
+  - name: cmathmi03lis
+    ip_address: 172.21.130.83
+  - name: cmathmi04lis
+    ip_address: 172.21.130.84
+  - name: cmathmi05lis
+    ip_address: 172.21.130.85
+  - name: cmathmi06lis
+    ip_address: 172.21.130.86
+  - name: cmathmi07lis
+    ip_address: 172.21.130.87
+  - name: cmathmi08lis
+    ip_address: 172.21.130.88
+  - name: cmathmi09lis
+    ip_address: 172.21.130.89
+  - name: cmathmi10lis
+    ip_address: 172.21.130.90
+  - name: cmathmi11lis
+    ip_address: 172.21.130.91
+  - name: cmathmi12lis
+    ip_address: 172.21.130.92
+  - name: cmathmi13lis
+    ip_address: 172.21.130.93
+  - name: cmathmi14lis
+    ip_address: 172.21.130.94
+  - name: cmathmi15lis
+    ip_address: 172.21.130.95
+  - name: cmathmi16lis
+    ip_address: 172.21.130.96
+  - name: cmathmi17lis
+    ip_address: 172.21.130.97
+  - name: cmathmi18lis
+    ip_address: 172.21.130.98
+  - name: cmathmi19lis
+    ip_address: 172.21.130.99
+  - name: cmathmi20lis
+    ip_address: 172.21.130.100
+  - name: cmatcwp01lis
+    ip_address: 172.21.130.101
+  - name: cmatcwp02lis
+    ip_address: 172.21.130.102
+  - name: cmatcwp03lis
+    ip_address: 172.21.130.103
+  - name: cmatcwp04lis
+    ip_address: 172.21.130.104
+  - name: cmatcwp05lis
+    ip_address: 172.21.130.105
+  - name: cmatcwp06lis
+    ip_address: 172.21.130.106
+  - name: cmatcwp07lis
+    ip_address: 172.21.130.107
+  - name: cmatcwp08lis
+    ip_address: 172.21.130.108
+  - name: cmatcwp09lis
+    ip_address: 172.21.130.109
+  - name: cmatcwp10lis
+    ip_address: 172.21.130.110
+  - name: cmatcwp11lis
+    ip_address: 172.21.130.111
+  - name: cmatcwp12lis
+    ip_address: 172.21.130.112
+  - name: cmatcwp13lis
+    ip_address: 172.21.130.113
+  - name: cmatcwp14lis
+    ip_address: 172.21.130.114
+  - name: cmatcwp15lis
+    ip_address: 172.21.130.115
+  - name: cmatcwp16lis
+    ip_address: 172.21.130.116
+  - name: cmatcwp17lis
+    ip_address: 172.21.130.117
+  - name: cmatcwp18lis
+    ip_address: 172.21.130.118
+  - name: cmatcwp19lis
+    ip_address: 172.21.130.119
+  - name: cmatcwp20lis
+    ip_address: 172.21.130.120
+  - name: cmatkvm01lis
+    ip_address: 172.21.130.241
+  - name: cmatkvm02lis
+    ip_address: 172.21.130.242
+  - name: cmatkvm03lis
+    ip_address: 172.21.130.243
+  - name: cmatkvm04lis
+    ip_address: 172.21.130.244
+  - name: cmatkvm05lis
+    ip_address: 172.21.130.245
+  - name: cmatkvm06lis
+    ip_address: 172.21.130.246
+  - name: cmatkvm07lis
+    ip_address: 172.21.130.247
+  - name: cmatkvm08lis
+    ip_address: 172.21.130.248
+  - name: cmatkvm09lis
+    ip_address: 172.21.130.249
+  - name: cmatkvm10lis
+    ip_address: 172.21.130.250
+  - name: cmp1dbm01lis
+    ip_address: 172.21.131.142
+  - name: cmp1dbm02lis
+    ip_address: 172.21.131.2
+  - name: cmp1dbm03lis
+    ip_address: 172.21.131.3
+  - name: cmp1dbm04lis
+    ip_address: 172.21.131.4
+  - name: cmp1dbm05lis
+    ip_address: 172.21.131.5
+  - name: cmp1dbm06lis
+    ip_address: 172.21.131.143
+  - name: cmp1dbm07lis
+    ip_address: 172.21.131.144
+  - name: cmp1dbm08lis
+    ip_address: 172.21.131.171
+  - name: cmp1dbm09lis
+    ip_address: 172.21.131.193
+  - name: cmp1dbm10lis
+    ip_address: 172.21.131.194
+  - name: cmp1dbm11lis
+    ip_address: 172.21.131.196
+  - name: cmp1dbm12lis
+    ip_address: 172.21.131.197
+  - name: cmp1dbm13lis
+    ip_address: 172.21.131.198
+  - name: cmp1dbm14lis
+    ip_address: 172.21.131.199
+  - name: cmp1dbm15lis
+    ip_address: 172.21.131.200
+  - name: cmp1dbm16lis
+    ip_address: 172.21.131.201
+  - name: cmp1dbm17lis
+    ip_address: 172.21.131.202
+  - name: cmp1dbm18lis
+    ip_address: 172.21.131.203
+  - name: cmp1dbm19lis
+    ip_address: 172.21.131.204
+  - name: cmp1cwp01lis
+    ip_address: 172.21.131.6
+  - name: cmp1cwp02lis
+    ip_address: 172.21.131.7
+  - name: cmp1cwp03lis
+    ip_address: 172.21.131.8
+  - name: cmp1cwp04lis
+    ip_address: 172.21.131.9
+  - name: cmp1cwp05lis
+    ip_address: 172.21.131.10
+  - name: cmp1cwp06lis
+    ip_address: 172.21.131.11
+  - name: cmp1cwp07lis
+    ip_address: 172.21.131.12
+  - name: cmp1cwp08lis
+    ip_address: 172.21.131.13
+  - name: cmp1cwp09lis
+    ip_address: 172.21.131.14
+  - name: cmp1cwp10lis
+    ip_address: 172.21.131.15
+  - name: cmp1cwp11lis
+    ip_address: 172.21.131.16
+  - name: cmp1cwp12lis
+    ip_address: 172.21.131.17
+  - name: cmp1cwp13lis
+    ip_address: 172.21.131.18
+  - name: cmp1cwp14lis
+    ip_address: 172.21.131.19
+  - name: cmp1cwp15lis
+    ip_address: 172.21.131.20
+  - name: cmp1cwp16lis
+    ip_address: 172.21.131.21
+  - name: cmp1cwp17lis
+    ip_address: 172.21.131.22
+  - name: cmp1cwp18lis
+    ip_address: 172.21.131.23
+  - name: cmp1cwp19lis
+    ip_address: 172.21.131.24
+  - name: cmp1cwp20lis
+    ip_address: 172.21.131.25
+  - name: cmp1cwp21lis
+    ip_address: 172.21.131.26
+  - name: cmp1cwp22lis
+    ip_address: 172.21.131.27
+  - name: cmp1cwp23lis
+    ip_address: 172.21.131.28
+  - name: cmp1cwp24lis
+    ip_address: 172.21.131.29
+  - name: cmp1cwp25lis
+    ip_address: 172.21.131.30
+  - name: cmp1cwp26lis
+    ip_address: 172.21.131.31
+  - name: cmp1cwp27lis
+    ip_address: 172.21.131.32
+  - name: cmp1cwp28lis
+    ip_address: 172.21.131.33
+  - name: cmp1cwp29lis
+    ip_address: 172.21.131.34
+  - name: cmp1cwp30lis
+    ip_address: 172.21.131.35
+  - name: cmp1cwp31lis
+    ip_address: 172.21.131.36
+  - name: cmp1cwp32lis
+    ip_address: 172.21.131.37
+  - name: cmp1cwp33lis
+    ip_address: 172.21.131.38
+  - name: cmp1cwp34lis
+    ip_address: 172.21.131.39
+  - name: cmp1cwp35lis
+    ip_address: 172.21.131.40
+  - name: cmp1cwp36lis
+    ip_address: 172.21.131.41
+  - name: cmp1cwp37lis
+    ip_address: 172.21.131.42
+  - name: cmp1cwp38lis
+    ip_address: 172.21.131.43
+  - name: cmp1cwp39lis
+    ip_address: 172.21.131.44
+  - name: cmp1cwp40lis
+    ip_address: 172.21.131.45
+  - name: cmp1cwp41lis
+    ip_address: 172.21.131.46
+  - name: cmp1cwp42lis
+    ip_address: 172.21.131.47
+  - name: cmp1cwp43lis
+    ip_address: 172.21.131.48
+  - name: cmp1cwp44lis
+    ip_address: 172.21.131.49
+  - name: cmp1cwp45lis
+    ip_address: 172.21.131.50
+  - name: cmp1cwp46lis
+    ip_address: 172.21.131.51
+  - name: cmp1cwp47lis
+    ip_address: 172.21.131.52
+  - name: cmp1cwp48lis
+    ip_address: 172.21.131.53
+  - name: cmp1cwp49lis
+    ip_address: 172.21.131.54
+  - name: cmp1cwp50lis
+    ip_address: 172.21.131.55
+  - name: cmp1cwp51lis
+    ip_address: 172.21.131.145
+  - name: cmp1cwp52lis
+    ip_address: 172.21.131.146
+  - name: cmp1cwp53lis
+    ip_address: 172.21.131.147
+  - name: cmp1cwp54lis
+    ip_address: 172.21.131.148
+  - name: cmp1cwp55lis
+    ip_address: 172.21.131.149
+  - name: cmp1cwp56lis
+    ip_address: 172.21.131.150
+  - name: cmp1cwp57lis
+    ip_address: 172.21.131.151
+  - name: cmp1cwp58lis
+    ip_address: 172.21.131.152
+  - name: cmp1cwp59lis
+    ip_address: 172.21.131.153
+  - name: cmp1cwp60lis
+    ip_address: 172.21.131.154
+  - name: cmp1cwp61lis
+    ip_address: 172.21.131.155
+  - name: cmp1cwp62lis
+    ip_address: 172.21.131.170
+  - name: cmp1srv01lis
+    ip_address: 172.21.131.56
+  - name: cmp1srv02lis
+    ip_address: 172.21.131.57
+  - name: cmp1srv03lis
+    ip_address: 172.21.131.58
+  - name: cmp1srv04lis
+    ip_address: 172.21.131.59
+  - name: cmp1srv05lis
+    ip_address: 172.21.131.60
+  - name: cmp1srv06lis
+    ip_address: 172.21.131.61
+  - name: cmp1srv07lis
+    ip_address: 172.21.131.62
+  - name: cmp1srv08lis
+    ip_address: 172.21.131.63
+  - name: cmp1srv09lis
+    ip_address: 172.21.131.64
+  - name: cmp1srv10lis
+    ip_address: 172.21.131.65
+  - name: cmp1srv11lis
+    ip_address: 172.21.131.66
+  - name: cmp1srv12lis
+    ip_address: 172.21.131.67
+  - name: cmp1srv13lis
+    ip_address: 172.21.131.68
+  - name: cmp1srv14lis
+    ip_address: 172.21.131.69
+  - name: cmp1srv15lis
+    ip_address: 172.21.131.70
+  - name: cmp1srv16lis
+    ip_address: 172.21.131.71
+  - name: cmp1srv17lis
+    ip_address: 172.21.131.72
+  - name: cmp1srv18lis
+    ip_address: 172.21.131.73
+  - name: cmp1srv19lis
+    ip_address: 172.21.131.74
+  - name: cmp1srv20lis
+    ip_address: 172.21.131.75
+  - name: cmp1srv21lis
+    ip_address: 172.21.131.76
+  - name: cmp1srv22lis
+    ip_address: 172.21.131.77
+  - name: cmp1srv23lis
+    ip_address: 172.21.131.78
+  - name: cmp1srv24lis
+    ip_address: 172.21.131.79
+  - name: cmp1srv25lis
+    ip_address: 172.21.131.80
+  - name: cmp1srv26lis
+    ip_address: 172.21.131.81
+  - name: cmp1srv27lis
+    ip_address: 172.21.131.82
+  - name: cmp1srv28lis
+    ip_address: 172.21.131.83
+  - name: cmp1srv29lis
+    ip_address: 172.21.131.84
+  - name: cmp1srv30lis
+    ip_address: 172.21.131.85
+  - name: cmp1srv31lis
+    ip_address: 172.21.131.86
+  - name: cmp1srv32lis
+    ip_address: 172.21.131.87
+  - name: cmp1srv33lis
+    ip_address: 172.21.131.88
+  - name: cmp1srv34lis
+    ip_address: 172.21.131.89
+  - name: cmp1srv35lis
+    ip_address: 172.21.131.90
+  - name: cmp1srv36lis
+    ip_address: 172.21.131.91
+  - name: cmp1srv37lis
+    ip_address: 172.21.131.92
+  - name: cmp1srv38lis
+    ip_address: 172.21.131.93
+  - name: cmp1srv39lis
+    ip_address: 172.21.131.94
+  - name: cmp1srv40lis
+    ip_address: 172.21.131.95
+  - name: cmp1srv41lis
+    ip_address: 172.21.131.96
+  - name: cmp1srv42lis
+    ip_address: 172.21.131.97
+  - name: cmp1srv43lis
+    ip_address: 172.21.131.98
+  - name: cmp1srv44lis
+    ip_address: 172.21.131.99
+  - name: cmp1srv45lis
+    ip_address: 172.21.131.100
+  - name: cmp1srv46lis
+    ip_address: 172.21.131.101
+  - name: cmp1srv47lis
+    ip_address: 172.21.131.102
+  - name: cmp1srv48lis
+    ip_address: 172.21.131.103
+  - name: cmp1srv49lis
+    ip_address: 172.21.131.104
+  - name: cmp1srv50lis
+    ip_address: 172.21.131.105
+  - name: cmp1srv51lis
+    ip_address: 172.21.131.156
+  - name: cmp1srv52lis
+    ip_address: 172.21.131.157
+  - name: cmp1srv53lis
+    ip_address: 172.21.131.158
+  - name: cmp1srv54lis
+    ip_address: 172.21.131.159
+  - name: cmp1srv55lis
+    ip_address: 172.21.131.160
+  - name: cmp1srv56lis
+    ip_address: 172.21.131.161
+  - name: cmp1srv57lis
+    ip_address: 172.21.131.162
+  - name: cmp1srv58lis
+    ip_address: 172.21.131.163
+  - name: cmp1srv59lis
+    ip_address: 172.21.131.164
+  - name: cmp1srv60lis
+    ip_address: 172.21.131.165
+  - name: cmp1srv61lis
+    ip_address: 172.21.131.166
+  - name: cmp1srv62lis
+    ip_address: 172.21.131.167
+  - name: cmp1srv63lis
+    ip_address: 172.21.131.168
+  - name: cmp1srv64lis
+    ip_address: 172.21.131.169
+  - name: cmp1srv65lis
+    ip_address: 172.21.131.172
+  - name: cmp1srv66lis
+    ip_address: 172.21.131.173
+  - name: cmp1srv67lis
+    ip_address: 172.21.131.174
+  - name: cmp1srv68lis
+    ip_address: 172.21.131.175
+  - name: cmp1srv69lis
+    ip_address: 172.21.131.176
+  - name: cmp1srv70lis
+    ip_address: 172.21.131.177
+  - name: cmp1srv71lis
+    ip_address: 172.21.131.178
+  - name: cmp1srv72lis
+    ip_address: 172.21.131.179
+  - name: cmp1srv73lis
+    ip_address: 172.21.131.180
+  - name: cmp1srv74lis
+    ip_address: 172.21.131.181
+  - name: cmp1srv75lis
+    ip_address: 172.21.131.182
+  - name: cmp1srv76lis
+    ip_address: 172.21.131.183
+  - name: cmp1srv77lis
+    ip_address: 172.21.131.184
+  - name: cmp1srv78lis
+    ip_address: 172.21.131.185
+  - name: cmp1srv79lis
+    ip_address: 172.21.131.186
+  - name: cmp1srv80lis
+    ip_address: 172.21.131.187
+  - name: cmp1srv81lis
+    ip_address: 172.21.131.188
+  - name: cmp1srv82lis
+    ip_address: 172.21.131.189
+  - name: cmp1srv83lis
+    ip_address: 172.21.131.190
+  - name: cmp1srv84lis
+    ip_address: 172.21.131.191
+  - name: cmp1srv85lis
+    ip_address: 172.21.131.192
+  - name: cmp1hmi01lis
+    ip_address: 172.21.131.106
+  - name: cmp1hmi02lis
+    ip_address: 172.21.131.107
+  - name: cmp1hmi03lis
+    ip_address: 172.21.131.108
+  - name: cmp1hmi04lis
+    ip_address: 172.21.131.109
+  - name: cmp1hmi05lis
+    ip_address: 172.21.131.110
+  - name: cmp1hmi06lis
+    ip_address: 172.21.131.111
+  - name: cmp1hmi07lis
+    ip_address: 172.21.131.112
+  - name: cmp1hmi08lis
+    ip_address: 172.21.131.113
+  - name: cmp1hmi09lis
+    ip_address: 172.21.131.114
+  - name: cmp1hmi10lis
+    ip_address: 172.21.131.115
+  - name: cmp1hmi11lis
+    ip_address: 172.21.131.116
+  - name: cmp1hmi12lis
+    ip_address: 172.21.131.117
+  - name: cmp1hmi13lis
+    ip_address: 172.21.131.118
+  - name: cmp1hmi14lis
+    ip_address: 172.21.131.119
+  - name: cmp1hmi15lis
+    ip_address: 172.21.131.120
+  - name: cmp1hmi16lis
+    ip_address: 172.21.131.121
+  - name: cmp1hmi17lis
+    ip_address: 172.21.131.122
+  - name: cmp1hmi18lis
+    ip_address: 172.21.131.123
+  - name: cmp1hmi19lis
+    ip_address: 172.21.131.124
+  - name: cmp1hmi20lis
+    ip_address: 172.21.131.125
+  - name: cmp1hmi21lis
+    ip_address: 172.21.131.126
+  - name: cmp1hmi22lis
+    ip_address: 172.21.131.127
+  - name: cmp1hmi23lis
+    ip_address: 172.21.131.128
+  - name: cmp1hmi24lis
+    ip_address: 172.21.131.129
+  - name: cmp1hmi25lis
+    ip_address: 172.21.131.130
+  - name: cmp1hmi26lis
+    ip_address: 172.21.131.131
+  - name: cmp1hmi27lis
+    ip_address: 172.21.131.132
+  - name: cmp1hmi28lis
+    ip_address: 172.21.131.133
+  - name: cmp1hmi29lis
+    ip_address: 172.21.131.134
+  - name: cmp1hmi30lis
+    ip_address: 172.21.131.135
+  - name: cmp1hmi31lis
+    ip_address: 172.21.131.136
+  - name: cmp1hmi32lis
+    ip_address: 172.21.131.137
+  - name: cmp1hmi33lis
+    ip_address: 172.21.131.138
+  - name: cmp1hmi34lis
+    ip_address: 172.21.131.139
+  - name: cmp1hmi35lis
+    ip_address: 172.21.131.140
+  - name: cmp1hmi36lis
+    ip_address: 172.21.131.141
+  - name: cmp1hmi37lis
+    ip_address: 172.21.131.195
+  - name: vm-amss-srv-1.localdomain
+    ip_address: 172.21.131.250
+    alias: vm-amss-srv-1 vm-amss-srv
+  - name: cmp1kvm03lis
+    ip_address: 172.21.131.248
+  - name: cmp1kvm04lis
+    ip_address: 172.21.131.249
+  - name: cmp1kvm01lis
+    ip_address: 172.21.131.251
+  - name: cmp1kvm02lis
+    ip_address: 172.21.131.252
+  - name: cmp1dbm01li
+    ip_address: 172.31.131.142
+  - name: cmp1dbm02li
+    ip_address: 172.31.131.2
+  - name: cmp1dbm03li
+    ip_address: 172.31.131.3
+  - name: cmp1dbm04li
+    ip_address: 172.31.131.4
+  - name: cmp1dbm05li
+    ip_address: 172.31.131.5
+  - name: cmp1dbm06li
+    ip_address: 172.31.131.143
+  - name: cmp1dbm07li
+    ip_address: 172.31.131.144
+  - name: cmp1dbm08li
+    ip_address: 172.31.131.171
+  - name: cmp1dbm09li
+    ip_address: 172.31.131.193
+  - name: cmp1dbm10li
+    ip_address: 172.31.131.194
+  - name: cmp1dbm11li
+    ip_address: 172.31.131.196
+  - name: cmp1dbm12li
+    ip_address: 172.31.131.197
+  - name: cmp1dbm13li
+    ip_address: 172.31.131.198
+  - name: cmp1dbm14li
+    ip_address: 172.31.131.199
+  - name: cmp1dbm15li
+    ip_address: 172.31.131.200
+  - name: cmp1dbm16li
+    ip_address: 172.31.131.201
+  - name: cmp1dbm17li
+    ip_address: 172.31.131.202
+  - name: cmp1dbm18li
+    ip_address: 172.31.131.203
+  - name: cmp1dbm19li
+    ip_address: 172.31.131.204
+  - name: cmp1cwp01li
+    ip_address: 172.31.131.6
+  - name: cmp1cwp02li
+    ip_address: 172.31.131.7
+  - name: cmp1cwp03li
+    ip_address: 172.31.131.8
+  - name: cmp1cwp04li
+    ip_address: 172.31.131.9
+  - name: cmp1cwp05li
+    ip_address: 172.31.131.10
+  - name: cmp1cwp06li
+    ip_address: 172.31.131.11
+  - name: cmp1cwp07li
+    ip_address: 172.31.131.12
+  - name: cmp1cwp08li
+    ip_address: 172.31.131.13
+  - name: cmp1cwp09li
+    ip_address: 172.31.131.14
+  - name: cmp1cwp10li
+    ip_address: 172.31.131.15
+  - name: cmp1cwp11li
+    ip_address: 172.31.131.16
+  - name: cmp1cwp12li
+    ip_address: 172.31.131.17
+  - name: cmp1cwp13li
+    ip_address: 172.31.131.18
+  - name: cmp1cwp14li
+    ip_address: 172.31.131.19
+  - name: cmp1cwp15li
+    ip_address: 172.31.131.20
+  - name: cmp1cwp16li
+    ip_address: 172.31.131.21
+  - name: cmp1cwp17li
+    ip_address: 172.31.131.22
+  - name: cmp1cwp18li
+    ip_address: 172.31.131.23
+  - name: cmp1cwp19li
+    ip_address: 172.31.131.24
+  - name: cmp1cwp20li
+    ip_address: 172.31.131.25
+  - name: cmp1cwp21li
+    ip_address: 172.31.131.26
+  - name: cmp1cwp22li
+    ip_address: 172.31.131.27
+  - name: cmp1cwp23li
+    ip_address: 172.31.131.28
+  - name: cmp1cwp24li
+    ip_address: 172.31.131.29
+  - name: cmp1cwp25li
+    ip_address: 172.31.131.30
+  - name: cmp1cwp26li
+    ip_address: 172.31.131.31
+  - name: cmp1cwp27li
+    ip_address: 172.31.131.32
+  - name: cmp1cwp28li
+    ip_address: 172.31.131.33
+  - name: cmp1cwp29li
+    ip_address: 172.31.131.34
+  - name: cmp1cwp30li
+    ip_address: 172.31.131.35
+  - name: cmp1cwp31li
+    ip_address: 172.31.131.36
+  - name: cmp1cwp32li
+    ip_address: 172.31.131.37
+  - name: cmp1cwp33li
+    ip_address: 172.31.131.38
+  - name: cmp1cwp34li
+    ip_address: 172.31.131.39
+  - name: cmp1cwp35li
+    ip_address: 172.31.131.40
+  - name: cmp1cwp36li
+    ip_address: 172.31.131.41
+  - name: cmp1cwp37li
+    ip_address: 172.31.131.42
+  - name: cmp1cwp38li
+    ip_address: 172.31.131.43
+  - name: cmp1cwp39li
+    ip_address: 172.31.131.44
+  - name: cmp1cwp40li
+    ip_address: 172.31.131.45
+  - name: cmp1cwp41li
+    ip_address: 172.31.131.46
+  - name: cmp1cwp42li
+    ip_address: 172.31.131.47
+  - name: cmp1cwp43li
+    ip_address: 172.31.131.48
+  - name: cmp1cwp44li
+    ip_address: 172.31.131.49
+  - name: cmp1cwp45li
+    ip_address: 172.31.131.50
+  - name: cmp1cwp46li
+    ip_address: 172.31.131.51
+  - name: cmp1cwp47li
+    ip_address: 172.31.131.52
+  - name: cmp1cwp48li
+    ip_address: 172.31.131.53
+  - name: cmp1cwp49li
+    ip_address: 172.31.131.54
+  - name: cmp1cwp50li
+    ip_address: 172.31.131.55
+  - name: cmp1cwp51li
+    ip_address: 172.31.131.145
+  - name: cmp1cwp52li
+    ip_address: 172.31.131.146
+  - name: cmp1cwp53li
+    ip_address: 172.31.131.147
+  - name: cmp1cwp54li
+    ip_address: 172.31.131.148
+  - name: cmp1cwp55li
+    ip_address: 172.31.131.149
+  - name: cmp1cwp56li
+    ip_address: 172.31.131.150
+  - name: cmp1cwp57li
+    ip_address: 172.31.131.151
+  - name: cmp1cwp58li
+    ip_address: 172.31.131.152
+  - name: cmp1cwp59li
+    ip_address: 172.31.131.153
+  - name: cmp1cwp60li
+    ip_address: 172.31.131.154
+  - name: cmp1cwp61li
+    ip_address: 172.31.131.155
+  - name: cmp1cwp62li
+    ip_address: 172.31.131.170
+  - name: cmp1srv01li
+    ip_address: 172.31.131.56
+  - name: cmp1srv02li
+    ip_address: 172.31.131.57
+  - name: cmp1srv03li
+    ip_address: 172.31.131.58
+  - name: cmp1srv04li
+    ip_address: 172.31.131.59
+  - name: cmp1srv05li
+    ip_address: 172.31.131.60
+  - name: cmp1srv06li
+    ip_address: 172.31.131.61
+  - name: cmp1srv07li
+    ip_address: 172.31.131.62
+  - name: cmp1srv08li
+    ip_address: 172.31.131.63
+  - name: cmp1srv09li
+    ip_address: 172.31.131.64
+  - name: cmp1srv10li
+    ip_address: 172.31.131.65
+  - name: cmp1srv11li
+    ip_address: 172.31.131.66
+  - name: cmp1srv12li
+    ip_address: 172.31.131.67
+  - name: cmp1srv13li
+    ip_address: 172.31.131.68
+  - name: cmp1srv14li
+    ip_address: 172.31.131.69
+  - name: cmp1srv15li
+    ip_address: 172.31.131.70
+  - name: cmp1srv16li
+    ip_address: 172.31.131.71
+  - name: cmp1srv17li
+    ip_address: 172.31.131.72
+  - name: cmp1srv18li
+    ip_address: 172.31.131.73
+  - name: cmp1srv19li
+    ip_address: 172.31.131.74
+  - name: cmp1srv20li
+    ip_address: 172.31.131.75
+  - name: cmp1srv21li
+    ip_address: 172.31.131.76
+  - name: cmp1srv22li
+    ip_address: 172.31.131.77
+  - name: cmp1srv23li
+    ip_address: 172.31.131.78
+  - name: cmp1srv24li
+    ip_address: 172.31.131.79
+  - name: cmp1srv25li
+    ip_address: 172.31.131.80
+  - name: cmp1srv26li
+    ip_address: 172.31.131.81
+  - name: cmp1srv27li
+    ip_address: 172.31.131.82
+  - name: cmp1srv28li
+    ip_address: 172.31.131.83
+  - name: cmp1srv29li
+    ip_address: 172.31.131.84
+  - name: cmp1srv30li
+    ip_address: 172.31.131.85
+  - name: cmp1srv31li
+    ip_address: 172.31.131.86
+  - name: cmp1srv32li
+    ip_address: 172.31.131.87
+  - name: cmp1srv33li
+    ip_address: 172.31.131.88
+  - name: cmp1srv34li
+    ip_address: 172.31.131.89
+  - name: cmp1srv35li
+    ip_address: 172.31.131.90
+  - name: cmp1srv36li
+    ip_address: 172.31.131.91
+  - name: cmp1srv37li
+    ip_address: 172.31.131.92
+  - name: cmp1srv38li
+    ip_address: 172.31.131.93
+  - name: cmp1srv39li
+    ip_address: 172.31.131.94
+  - name: cmp1srv40li
+    ip_address: 172.31.131.95
+  - name: cmp1srv41li
+    ip_address: 172.31.131.96
+  - name: cmp1srv42li
+    ip_address: 172.31.131.97
+  - name: cmp1srv43li
+    ip_address: 172.31.131.98
+  - name: cmp1srv44li
+    ip_address: 172.31.131.99
+  - name: cmp1srv45li
+    ip_address: 172.31.131.100
+  - name: cmp1srv46li
+    ip_address: 172.31.131.101
+  - name: cmp1srv47li
+    ip_address: 172.31.131.102
+  - name: cmp1srv48li
+    ip_address: 172.31.131.103
+  - name: cmp1srv49li
+    ip_address: 172.31.131.104
+  - name: cmp1srv50li
+    ip_address: 172.31.131.105
+  - name: cmp1srv51li
+    ip_address: 172.31.131.156
+  - name: cmp1srv52li
+    ip_address: 172.31.131.157
+  - name: cmp1srv53li
+    ip_address: 172.31.131.158
+  - name: cmp1srv54li
+    ip_address: 172.31.131.159
+  - name: cmp1srv55li
+    ip_address: 172.31.131.160
+  - name: cmp1srv56li
+    ip_address: 172.31.131.161
+  - name: cmp1srv57li
+    ip_address: 172.31.131.162
+  - name: cmp1srv58li
+    ip_address: 172.31.131.163
+  - name: cmp1srv59li
+    ip_address: 172.31.131.164
+  - name: cmp1srv60li
+    ip_address: 172.31.131.165
+  - name: cmp1srv61li
+    ip_address: 172.31.131.166
+  - name: cmp1srv62li
+    ip_address: 172.31.131.167
+  - name: cmp1srv63li
+    ip_address: 172.31.131.168
+  - name: cmp1srv64li
+    ip_address: 172.31.131.169
+  - name: cmp1srv65li
+    ip_address: 172.31.131.172
+  - name: cmp1srv66li
+    ip_address: 172.31.131.173
+  - name: cmp1srv67li
+    ip_address: 172.31.131.174
+  - name: cmp1srv68li
+    ip_address: 172.31.131.175
+  - name: cmp1srv69li
+    ip_address: 172.31.131.176
+  - name: cmp1srv70li
+    ip_address: 172.31.131.177
+  - name: cmp1srv71li
+    ip_address: 172.31.131.178
+  - name: cmp1srv72li
+    ip_address: 172.31.131.179
+  - name: cmp1srv73li
+    ip_address: 172.31.131.180
+  - name: cmp1srv74li
+    ip_address: 172.31.131.181
+  - name: cmp1srv75li
+    ip_address: 172.31.131.182
+  - name: cmp1srv76li
+    ip_address: 172.31.131.183
+  - name: cmp1srv77li
+    ip_address: 172.31.131.184
+  - name: cmp1srv78li
+    ip_address: 172.31.131.185
+  - name: cmp1srv79li
+    ip_address: 172.31.131.186
+  - name: cmp1srv80li
+    ip_address: 172.31.131.187
+  - name: cmp1srv81li
+    ip_address: 172.31.131.188
+  - name: cmp1srv82li
+    ip_address: 172.31.131.189
+  - name: cmp1srv83li
+    ip_address: 172.31.131.190
+  - name: cmp1srv84li
+    ip_address: 172.31.131.191
+  - name: cmp1srv85li
+    ip_address: 172.31.131.192
+  - name: cmp1hmi01li
+    ip_address: 172.31.131.106
+  - name: cmp1hmi02li
+    ip_address: 172.31.131.107
+  - name: cmp1hmi03li
+    ip_address: 172.31.131.108
+  - name: cmp1hmi04li
+    ip_address: 172.31.131.109
+  - name: cmp1hmi05li
+    ip_address: 172.31.131.110
+  - name: cmp1hmi06li
+    ip_address: 172.31.131.111
+  - name: cmp1hmi07li
+    ip_address: 172.31.131.112
+  - name: cmp1hmi08li
+    ip_address: 172.31.131.113
+  - name: cmp1hmi09li
+    ip_address: 172.31.131.114
+  - name: cmp1hmi10li
+    ip_address: 172.31.131.115
+  - name: cmp1hmi11li
+    ip_address: 172.31.131.116
+  - name: cmp1hmi12li
+    ip_address: 172.31.131.117
+  - name: cmp1hmi13li
+    ip_address: 172.31.131.118
+  - name: cmp1hmi14li
+    ip_address: 172.31.131.119
+  - name: cmp1hmi15li
+    ip_address: 172.31.131.120
+  - name: cmp1hmi16li
+    ip_address: 172.31.131.121
+  - name: cmp1hmi17li
+    ip_address: 172.31.131.122
+  - name: cmp1hmi18li
+    ip_address: 172.31.131.123
+  - name: cmp1hmi19li
+    ip_address: 172.31.131.124
+  - name: cmp1hmi20li
+    ip_address: 172.31.131.125
+  - name: cmp1hmi21li
+    ip_address: 172.31.131.126
+  - name: cmp1hmi22li
+    ip_address: 172.31.131.127
+  - name: cmp1hmi23li
+    ip_address: 172.31.131.128
+  - name: cmp1hmi24li
+    ip_address: 172.31.131.129
+  - name: cmp1hmi25li
+    ip_address: 172.31.131.130
+  - name: cmp1hmi26li
+    ip_address: 172.31.131.131
+  - name: cmp1hmi27li
+    ip_address: 172.31.131.132
+  - name: cmp1hmi28li
+    ip_address: 172.31.131.133
+  - name: cmp1hmi29li
+    ip_address: 172.31.131.134
+  - name: cmp1hmi30li
+    ip_address: 172.31.131.135
+  - name: cmp1hmi31li
+    ip_address: 172.31.131.136
+  - name: cmp1hmi32li
+    ip_address: 172.31.131.137
+  - name: cmp1hmi33li
+    ip_address: 172.31.131.138
+  - name: cmp1hmi34li
+    ip_address: 172.31.131.139
+  - name: cmp1hmi35li
+    ip_address: 172.31.131.140
+  - name: cmp1hmi36li
+    ip_address: 172.31.131.141
+  - name: cmp1hmi37li
+    ip_address: 172.31.131.195
+  - name: cmp1kvm03li
+    ip_address: 172.31.131.248
+  - name: cmp1kvm04li
+    ip_address: 172.31.131.249
+  - name: cmp1kvm01li
+    ip_address: 172.31.131.251
+  - name: cmp1kvm02li
+    ip_address: 172.31.131.252
+  - name: wthvcmp01ilo
+    ip_address: 172.32.0.41
+  - name: wthvcmp01lim
+    ip_address: 172.32.0.1
+  - name: wthvexc01lim
+    ip_address: 172.32.0.101
+  - name: wthvexc02lim
+    ip_address: 172.32.0.102
+  - name: wthvexc03lim
+    ip_address: 172.32.0.103
+  - name: wthvexc06lim
+    ip_address: 172.32.0.106
+  - name: wthvexc07lim
+    ip_address: 172.32.0.107
+  - name: wthvexc10lim
+    ip_address: 172.32.0.110
+  - name: wthvexc11lim
+    ip_address: 172.32.0.111
+  - name: wthvexc12lim
+    ip_address: 172.32.0.112
+  - name: wthvexc17lim
+    ip_address: 172.32.0.117
+  - name: wthvptg01ilo
+    ip_address: 172.32.0.49
+  - name: wthvptg01lim
+    ip_address: 172.32.0.9
+  - name: wthvsrv02ilo
+    ip_address: 172.32.0.42
+  - name: wthvsrv02lim
+    ip_address: 172.32.0.2
+  - name: wthvsrv03ilo
+    ip_address: 172.32.0.43
+  - name: wthvsrv03lim
+    ip_address: 172.32.0.3
+  - name: wthvsrv04ilo
+    ip_address: 172.32.0.44
+  - name: wthvsrv04lim
+    ip_address: 172.32.0.4
+  - name: wthvsrv05ilo
+    ip_address: 172.32.0.45
+  - name: wthvsrv05lim
+    ip_address: 172.32.0.5
+  - name: wthvsrv06ilo
+    ip_address: 172.32.0.46
+  - name: wthvsrv06lim
+    ip_address: 172.32.0.6
+  - name: wthvsrv07ilo
+    ip_address: 172.32.0.47
+  - name: wthvsrv07lim
+    ip_address: 172.32.0.7
+  - name: wthvsrv08ilo
+    ip_address: 172.32.0.48
+  - name: wthvsrv08lim
+    ip_address: 172.32.0.8
+  - name: wthvtwr08lim
+    ip_address: 172.32.0.108
+  - name: wthvtwr09lim
+    ip_address: 172.32.0.109
+  - name: wtt0res01lim
+    ip_address: 172.32.0.53
+    alias: wtt0res01li wtt0res01lis
+  - name: wtt0tmp01lim
+    ip_address: 172.32.0.95
+    alias: wtt0tmp01li wtt0tmp01lis
+  - name: wtt0tmp02lim
+    ip_address: 172.32.0.96
+    alias: wtt0tmp02li wtt0tmp02lis
+  - name: wtt0tra01lim
+    ip_address: 172.32.0.56
+    alias: wtt0tra01li wtt0tra01lis wtt1tra01lis wtt2tra01lis wtt3tra01lis wtt4tra01lis wtertra01lis wttstra01lis
+  - name: wtt1agp1alim
+    ip_address: 172.32.0.19
+    alias: wtt1agp1ali wtt1agp1alis
+  - name: wtt1agp1blim
+    ip_address: 172.32.0.20
+    alias: wtt1agp1bli wtt1agp1blis
+  - name: wtt1dbm01lim
+    ip_address: 172.32.0.21
+    alias: wtt1dbm01li wtt1dbm01lis
+  - name: wtt1exc03lim
+    ip_address: 172.32.0.123
+    alias: wtt1exc03li wtt1exc03lis
+  - name: wtt1exc04lim
+    ip_address: 172.32.0.125
+    alias: wtt1exc04li wtt1exc04lis
+  - name: wtt1exc05lim
+    ip_address: 172.32.0.127
+    alias: wtt1exc05li wtt1exc05lis
+  - name: wtt1exc10lim
+    ip_address: 172.32.0.133
+    alias: wtt1exc10li wtt1exc10lis
+  - name: wtt1exc11lim
+    ip_address: 172.32.0.134
+    alias: wtt1exc11li wtt1exc11lis
+  - name: wtt1exc12lim
+    ip_address: 172.32.0.135
+    alias: wtt1exc12li wtt1exc12lis
+  - name: wtt1fdp1alim
+    ip_address: 172.32.0.17
+    alias: wtt1fdp1ali wtt1fdp1alis
+  - name: wtt1fdp1blim
+    ip_address: 172.32.0.18
+    alias: wtt1fdp1bli wtt1fdp1blis
+  - name: wtt1mst1alim
+    ip_address: 172.32.0.11
+    alias: wtt1mst1ali wtt1mst1alis
+  - name: wtt1mst1blim
+    ip_address: 172.32.0.12
+    alias: wtt1mst1bli wtt1mst1blis
+  - name: wtt1ptg01lim
+    ip_address: 172.32.0.54
+    alias: wtt1ptg01li wtt1ptg01lis
+  - name: wtt1sgw1alim
+    ip_address: 172.32.0.15
+    alias: wtt1sgw1ali wtt1sgw1alis
+  - name: wtt1sgw1blim
+    ip_address: 172.32.0.16
+    alias: wtt1sgw1bli wtt1sgw1blis
+  - name: wtt1snm1alim
+    ip_address: 172.32.0.13
+    alias: wtt1snm1ali wtt1snm1alis
+  - name: wtt1snm1blim
+    ip_address: 172.32.0.14
+    alias: wtt1snm1bli wtt1snm1blis
+  - name: wtt1twr01lim
+    ip_address: 172.32.0.129
+    alias: wtt1twr01li wtt1twr01lis
+  - name: wtt1twr02lim
+    ip_address: 172.32.0.131
+    alias: wtt1twr02li wtt1twr02lis
+  - name: wtt2agp1alim
+    ip_address: 172.32.0.30
+    alias: wtt2agp1ali wtt2agp1alis
+  - name: wtt2agp1blim
+    ip_address: 172.32.0.31
+    alias: wtt2agp1bli wtt2agp1blis
+  - name: wtt2dbm01lim
+    ip_address: 172.32.0.32
+    alias: wtt2dbm01li wtt2dbm01lis
+  - name: wtt2exc03lim
+    ip_address: 172.32.0.124
+    alias: wtt2exc03li wtt2exc03lis
+  - name: wtt2exc04lim
+    ip_address: 172.32.0.126
+    alias: wtt2exc04li wtt2exc04lis
+  - name: wtt2exc05lim
+    ip_address: 172.32.0.128
+    alias: wtt2exc05li wtt2exc05lis
+  - name: wtt2exc06lim
+    ip_address: 172.32.0.141
+    alias: wtt2exc06li wtt2exc06lis
+  - name: wtt2exc07lim
+    ip_address: 172.32.0.142
+    alias: wtt2exc07li wtt2exc07lis
+  - name: wtt2exc08lim
+    ip_address: 172.32.0.118
+    alias: wtt2exc08li wtt2exc08lis
+  - name: wtt2fdp1alim
+    ip_address: 172.32.0.28
+    alias: wtt2fdp1ali wtt2fdp1alis
+  - name: wtt2fdp1blim
+    ip_address: 172.32.0.29
+    alias: wtt2fdp1bli wtt2fdp1blis
+  - name: wtt2mst1alim
+    ip_address: 172.32.0.22
+    alias: wtt2mst1ali wtt2mst1alis
+  - name: wtt2mst1blim
+    ip_address: 172.32.0.23
+    alias: wtt2mst1bli wtt2mst1blis
+  - name: wtt2ptg01lim
+    ip_address: 172.32.0.55
+    alias: wtt2ptg01li wtt2ptg01lis
+  - name: wtt2sgw1alim
+    ip_address: 172.32.0.26
+    alias: wtt2sgw1ali wtt2sgw1alis
+  - name: wtt2sgw1blim
+    ip_address: 172.32.0.27
+    alias: wtt2sgw1bli wtt2sgw1blis
+  - name: wtt2snm1alim
+    ip_address: 172.32.0.24
+    alias: wtt2snm1ali wtt2snm1alis
+  - name: wtt2snm1blim
+    ip_address: 172.32.0.25
+    alias: wtt2snm1bli wtt2snm1blis
+  - name: wtt2twr01lim
+    ip_address: 172.32.0.130
+    alias: wtt2twr01li wtt2twr01lis
+  - name: wtt2twr02lim
+    ip_address: 172.32.0.132
+    alias: wtt2twr02li wtt2twr02lis
+  - name: wtt3agp1alim
+    ip_address: 172.32.0.50
+    alias: wtt3agp1ali wtt3agp1alis
+  - name: wtt3agp1blim
+    ip_address: 172.32.0.51
+    alias: wtt3agp1bli wtt3agp1blis
+  - name: wtt3dbm01lim
+    ip_address: 172.32.0.52
+    alias: wtt3dbm01li wtt3dbm01lis
+  - name: wtt3exc01lim
+    ip_address: 172.32.0.121
+    alias: wtt3exc01li wtt3exc01lis
+  - name: wtt3exc02lim
+    ip_address: 172.32.0.122
+    alias: wtt3exc02li wtt3exc02lis
+  - name: wtt3fdp1alim
+    ip_address: 172.32.0.39
+    alias: wtt3fdp1ali wtt3fdp1alis
+  - name: wtt3fdp1blim
+    ip_address: 172.32.0.40
+    alias: wtt3fdp1bli wtt3fdp1blis
+  - name: wtt3mst1alim
+    ip_address: 172.32.0.33
+    alias: wtt3mst1ali wtt3mst1alis
+  - name: wtt3mst1blim
+    ip_address: 172.32.0.34
+    alias: wtt3mst1bli wtt3mst1blis
+  - name: wtt3sgw1alim
+    ip_address: 172.32.0.37
+    alias: wtt3sgw1ali wtt3sgw1alis
+  - name: wtt3sgw1blim
+    ip_address: 172.32.0.38
+    alias: wtt3sgw1bli wtt3sgw1blis
+  - name: wtt3snm1alim
+    ip_address: 172.32.0.35
+    alias: wtt3snm1ali wtt3snm1alis
+  - name: wtt3snm1blim
+    ip_address: 172.32.0.36
+    alias: wtt3snm1bli wtt3snm1blis
+  - name: wtt4agp01lim
+    ip_address: 172.32.0.74
+    alias: wtt4agp01li wtt4agp01lis
+  - name: wtt4agp02lim
+    ip_address: 172.32.0.75
+    alias: wtt4agp02li wtt4agp02lis
+  - name: wtt4dbm01lim
+    ip_address: 172.32.0.78
+    alias: wtt4dbm01li wtt4dbm01lis
+  - name: wtt4dbm02lim
+    ip_address: 172.32.0.94
+    alias: wtt4dbm02li wtt4dbm02lis
+  - name: wtt4exc01lim
+    ip_address: 172.32.0.136
+    alias: wtt4exc01li wtt4exc01lis
+  - name: wtt4exc02lim
+    ip_address: 172.32.0.137
+    alias: wtt4exc02li wtt4exc02lis
+  - name: wtt4exe01lim
+    ip_address: 172.32.0.87
+    alias: wtt4exe01li wtt4exe01lis
+  - name: wtt4exe02lim
+    ip_address: 172.32.0.88
+    alias: wtt4exe02li wtt4exe02lis
+  - name: wtt4exe03lim
+    ip_address: 172.32.0.89
+    alias: wtt4exe03li wtt4exe03lis
+  - name: wtt4exe04lim
+    ip_address: 172.32.0.90
+    alias: wtt4exe04li wtt4exe04lis
+  - name: wtt4exe05lim
+    ip_address: 172.32.0.91
+    alias: wtt4exe05li wtt4exe05lis
+  - name: wtt4exe06lim
+    ip_address: 172.32.0.92
+    alias: wtt4exe06li wtt4exe06lis
+  - name: wtt4exe07lim
+    ip_address: 172.32.0.93
+    alias: wtt4exe07li wtt4exe07lis
+  - name: wtt4fdp01lim
+    ip_address: 172.32.0.70
+    alias: wtt4fdp01li wtt4fdp01lis
+  - name: wtt4fdp02lim
+    ip_address: 172.32.0.71
+    alias: wtt4fdp02li wtt4fdp02lis
+  - name: wtt4iod01lim
+    ip_address: 172.32.0.72
+    alias: wtt4iod01li wtt4iod01lis
+  - name: wtt4iod02lim
+    ip_address: 172.32.0.73
+    alias: wtt4iod02li wtt4iod02lis
+  - name: wtt4mst01lim
+    ip_address: 172.32.0.68
+    alias: wtt4mst01li wtt4mst01lis
+  - name: wtt4mst02lim
+    ip_address: 172.32.0.69
+    alias: wtt4mst02li wtt4mst02lis
+  - name: wtt4snm01lim
+    ip_address: 172.32.0.76
+    alias: wtt4snm01li wtt4snm01lis
+  - name: wtt4snm02lim
+    ip_address: 172.32.0.77
+    alias: wtt4snm02li wtt4snm02lis
+  - name: wttsdbm01lim
+    ip_address: 172.32.0.86
+    alias: wttsdbm01li wttsdbm01lis
+  - name: wttsexe01lim
+    ip_address: 172.32.0.79
+    alias: wttsexe01li wttsexe01lis
+  - name: wttsexe02lim
+    ip_address: 172.32.0.80
+    alias: wttsexe02li wttsexe02lis
+  - name: wttsexe03lim
+    ip_address: 172.32.0.81
+    alias: wttsexe03li wttsexe03lis
+  - name: wttsexe04lim
+    ip_address: 172.32.0.82
+    alias: wttsexe04li wttsexe04lis
+  - name: wttsexe05lim
+    ip_address: 172.32.0.83
+    alias: wttsexe05li wttsexe05lis
+  - name: wttsexe06lim
+    ip_address: 172.32.0.84
+    alias: wttsexe06li wttsexe06lis
+  - name: wttsexe07lim
+    ip_address: 172.32.0.85
+    alias: wttsexe07li wttsexe07lis
+  - name: wttsldr01lim
+    ip_address: 172.32.0.97
+    alias: wttsldr01li wttsldr01lis
+  - name: wttsldr02lim
+    ip_address: 172.32.0.98
+    alias: wttsldr02li wttsldr02lis
+  - name: wteragp01lim
+    ip_address: 172.32.0.63
+    alias: wteragp01li wteragp01lis
+  - name: wteragp02lim
+    ip_address: 172.32.0.64
+    alias: wteragp02li wteragp02lis
+  - name: wterdbm01lim
+    ip_address: 172.32.0.67
+    alias: wterdbm01li wterdbm01lis
+  - name: wterexc10lim
+    ip_address: 172.32.0.138
+    alias: wterexc10li wterexc10lis
+  - name: wterexc11lim
+    ip_address: 172.32.0.139
+    alias: wterexc11li wterexc11lis
+  - name: wterexc12lim
+    ip_address: 172.32.0.140
+    alias: wterexc12li wterexc12lis
+  - name: wterfdp01lim
+    ip_address: 172.32.0.59
+    alias: wterfdp01li wterfdp01lis
+  - name: wterfdp02lim
+    ip_address: 172.32.0.60
+    alias: wterfdp02li wterfdp02lis
+  - name: wteriod01lim
+    ip_address: 172.32.0.61
+    alias: wteriod01li wteriod01lis
+  - name: wteriod02lim
+    ip_address: 172.32.0.62
+    alias: wteriod02li wteriod02lis
+  - name: wtermst01lim
+    ip_address: 172.32.0.57
+    alias: wtermst01li wtermst01lis
+  - name: wtermst02lim
+    ip_address: 172.32.0.58
+    alias: wtermst02li wtermst02lis
+  - name: wtersnm01lim
+    ip_address: 172.32.0.65
+    alias: wtersnm01li wtersnm01lis
+  - name: wtersnm02lim
+    ip_address: 172.32.0.66
+    alias: wtersnm02li wtersnm02lis

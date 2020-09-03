@@ -1,0 +1,5 @@
+---
+xserver_screens:
+  - name: main
+    size: 1920x1200
+
